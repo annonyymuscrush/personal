@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Website</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts for Neon Effect -->
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --neon-primary: #0ff0fc;
+            --neon-secondary: #ff00ff;
+            --neon-tertiary: #00ff9d;
+            --neon-dark: #0a0a20;
+            --neon-light: #e0f8ff;
+            --neon-glow: 0 0 10px rgba(0, 255, 255, 0.8),
+                         0 0 20px rgba(0, 255, 255, 0.6),
+                         0 0 30px rgba(0, 255, 255, 0.4);
+            --light-bg: #f8f9fa;
+            --light-text: #212529;
+        }
+
+        body {
+            padding-left: 250px;
+            transition: all 0.3s;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--neon-dark);
+            color: var(--neon-light);
+            overflow-x: hidden;
+        }
+
+        body[data-bs-theme="light"] {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+        }
+
+        body[data-bs-theme="light"] .neon-text {
+            color: var(--neon-dark);
+            text-shadow: none;
+        }
+
+        .neon-text {
+            font-family: 'Teko', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: var(--neon-glow);
+            color: var(--neon-primary);
+        }
+
+        .neon-border {
+            border: 2px solid var(--neon-primary);
+            box-shadow: var(--neon-glow);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: rgba(10, 10, 32, 0.9);
+            overflow-y: auto;
+            transition: all 0.3s;
+            z-index: 1;
+            border-right: 1px solid var(--neon-primary);
+        }
+
+        body[data-bs-theme="light"] .sidebar {
+            background-color: rgba(248, 249, 250, 0.9);
+            border-right: 1px solid rgba(13, 110, 253, 0.5);
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 3px solid var(--neon-primary);
+            box-shadow: var(--neon-glow);
+        }
+
+        body[data-bs-theme="light"] .profile-img {
+            border: 3px solid rgba(13, 110, 253, 0.7);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--neon-primary),
+                        0 0 30px var(--neon-secondary),
+                        0 0 40px var(--neon-tertiary);
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            transition: color 0.3s, text-shadow 0.3s;
+            color: var(--neon-light);
+        }
+
+        body[data-bs-theme="light"] .social-icons a {
+            color: var(--light-text);
+        }
+
+        .social-icons a:hover {
+            color: var(--neon-primary) !important;
+            text-shadow: var(--neon-glow);
+        }
+
+        .nav-link {
+            color: var(--neon-light);
+            transition: background-color 0.3s, color 0.3s, text-shadow 0.3s;
+            margin: 5px 10px;
+            border-radius: 5px;
+        }
+
+        body[data-bs-theme="light"] .nav-link {
+            color: var(--light-text);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(0, 255, 255, 0.1);
+            color: var(--neon-primary);
+            text-shadow: var(--neon-glow);
+        }
+
+        body[data-bs-theme="light"] .nav-link:hover,
+        body[data-bs-theme="light"] .nav-link.active {
+            background-color: rgba(13, 110, 253, 0.1);
+            color: #0d6efd;
+            text-shadow: none;
+        }
+
+        .nav-link i {
+            margin-right: 10px;
+        }
+
+        .dropdown-menu {
+            background-color: rgba(10, 10, 32, 0.95);
+            border: 1px solid var(--neon-primary);
+            animation: slide-up 0.3s ease;
+        }
+
+        body[data-bs-theme="light"] .dropdown-menu {
+            background-color: rgba(248, 249, 250, 0.95);
+            border: 1px solid rgba(13, 110, 253, 0.5);
+        }
+
+        .dropdown-item {
+            color: var(--neon-light);
+        }
+
+        body[data-bs-theme="light"] .dropdown-item {
+            color: var(--light-text);
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(0, 255, 255, 0.1);
+            color: var(--neon-primary);
+        }
+
+        body[data-bs-theme="light"] .dropdown-item:hover {
+            background-color: rgba(13, 110, 253, 0.1);
+            color: #0d6efd;
+        }
+
+        @keyframes slide-up {
+            from { transform: translateY(10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .thumbnail {
+            width: 20px;
+            height: 20px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            background-color: rgba(10, 10, 32, 0.9);
+            border-top: 1px solid var(--neon-primary);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            left: 0;
+            z-index: 1000;
+            animation: fade-in 0.5s ease;
+        }
+
+        body[data-bs-theme="light"] .bottom-nav {
+            background-color: rgba(248, 249, 250, 0.9);
+            border-top: 1px solid rgba(13, 110, 253, 0.5);
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .bottom-nav .nav-link {
+            font-size: 1.5rem;
+            color: var(--neon-light);
+            padding: 5px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        body[data-bs-theme="light"] .bottom-nav .nav-link {
+            color: var(--light-text);
+        }
+
+        .bottom-nav .nav-link.active {
+            color: var(--neon-primary);
+            text-shadow: var(--neon-glow);
+        }
+
+        body[data-bs-theme="light"] .bottom-nav .nav-link.active {
+            color: #0d6efd;
+            text-shadow: none;
+        }
+
+        .bottom-nav .nav-link i {
+            margin-right: 0;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .main-content {
+            padding: 20px;
+            min-height: 100vh;
+            padding-bottom: 60px; /* Add padding for bottom nav */
+        }
+
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: rgba(20, 20, 50, 0.7);
+            border: 1px solid var(--neon-primary);
+            color: var(--neon-light);
+            overflow: hidden;
+            position: relative;
+        }
+
+        body[data-bs-theme="light"] .card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            color: var(--light-text);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            z-index: -1;
+            background: linear-gradient(45deg, var(--neon-primary), var(--neon-secondary), var(--neon-tertiary));
+            background-size: 400%;
+            border-radius: 8px;
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        body[data-bs-theme="light"] .card::before {
+            background: linear-gradient(45deg, #0d6efd, #6610f2, #6f42c1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
+            color: var(--neon-light);
+        }
+
+        body[data-bs-theme="light"] .card:hover {
+            box-shadow: 0 10px 20px rgba(13, 110, 253, 0.3);
+            color: var(--light-text);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+            animation: animate 8s linear infinite;
+        }
+
+        @keyframes animate {
+            0% { background-position: 0 0; }
+            50% { background-position: 300% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        .card-title {
+            color: var(--neon-primary);
+        }
+
+        body[data-bs-theme="light"] .card-title {
+            color: #0d6efd;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--neon-primary), var(--neon-secondary));
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        body[data-bs-theme="light"] .timeline:before {
+            background: linear-gradient(to bottom, #0d6efd, #6610f2);
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 20px;
+            background: rgba(20, 20, 50, 0.7);
+            border-radius: 8px;
+            border: 1px solid var(--neon-primary);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        body[data-bs-theme="light"] .timeline-content {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            box-shadow: 0 0 10px rgba(13, 110, 253, 0.3);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 55%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: 55%;
+        }
+
+        .form-control {
+            background-color: rgba(20, 20, 50, 0.7);
+            border: 1px solid var(--neon-primary);
+            color: var(--neon-light);
+        }
+
+        body[data-bs-theme="light"] .form-control {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            color: var(--light-text);
+        }
+
+        .form-control:focus {
+            background-color: rgba(20, 20, 50, 0.9);
+            border-color: var(--neon-secondary);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+            color: var(--neon-light);
+        }
+
+        body[data-bs-theme="light"] .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-color: #6610f2;
+            box-shadow: 0 0 10px rgba(13, 110, 253, 0.3);
+            color: var(--light-text);
+        }
+
+        .btn-primary {
+            background-color: var(--neon-primary);
+            border-color: var(--neon-primary);
+            color: var(--neon-dark);
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        body[data-bs-theme="light"] .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--neon-primary);
+            box-shadow: var(--neon-glow);
+        }
+
+        body[data-bs-theme="light"] .btn-primary:hover {
+            background-color: transparent;
+            color: #0d6efd;
+            box-shadow: 0 0 10px rgba(13, 110, 253, 0.3);
+        }
+
+        .nav-tabs .nav-link {
+            background-color: transparent;
+            border: none;
+            color: var(--neon-light);
+            position: relative;
+        }
+
+        body[data-bs-theme="light"] .nav-tabs .nav-link {
+            color: var(--light-text);
+        }
+
+        .nav-tabs .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--neon-primary);
+            transition: width 0.3s;
+        }
+
+        body[data-bs-theme="light"] .nav-tabs .nav-link::after {
+            background-color: #0d6efd;
+        }
+
+        .nav-tabs .nav-link:hover::after,
+        .nav-tabs .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: var(--neon-primary);
+            background-color: transparent;
+        }
+
+        body[data-bs-theme="light"] .nav-tabs .nav-link.active {
+            color: #0d6efd;
+        }
+
+        .progress {
+            height: 10px;
+            background-color: rgba(20, 20, 50, 0.7);
+            border: 1px solid var(--neon-primary);
+            overflow: visible;
+        }
+
+        body[data-bs-theme="light"] .progress {
+            background-color: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            background-color: var(--neon-primary);
+            box-shadow: var(--neon-glow);
+            position: relative;
+        }
+
+        body[data-bs-theme="light"] .progress-bar {
+            background-color: #0d6efd;
+            box-shadow: none;
+        }
+
+        .progress-bar::after {
+            content: attr(aria-valuenow)'%';
+            position: absolute;
+            right: -25px;
+            top: -25px;
+            color: var(--neon-primary);
+            font-weight: bold;
+        }
+
+        body[data-bs-theme="light"] .progress-bar::after {
+            color: #0d6efd;
+        }
+
+        .favorite-card {
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    background-color: transparent;
+    border: none;
+    perspective: 1000px;
+    position: relative; /* Ensure positioning context for absolute children */
+    min-height: 300px; /* Set a minimum height to ensure consistency */
+}
+
+.favorite-card:hover {
+    transform: rotateY(180deg);
+}
+
+.favorite-card-front, .favorite-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    background-color: rgba(20, 20, 50, 0.7);
+    border: 1px solid var(--neon-primary);
+    display: flex;
+    flex-direction: column; /* Stack image and text vertically */
+    overflow: hidden; /* Prevent any overflow */
+}
+
+body[data-bs-theme="light"] .favorite-card-front,
+body[data-bs-theme="light"] .favorite-card-back {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.favorite-card-back {
+    transform: rotateY(180deg);
+    padding: 15px; /* Maintain padding for back content */
+}
+
+.favorite-card-front img {
+    width: 100%;
+    height: 180px; /* Fixed height for images to fit consistently */
+    object-fit: cover; /* Crop image to fit without stretching */
+    object-position: center; /* Center the image */
+    border-top-left-radius: 8px; /* Match card border radius */
+    border-top-right-radius: 8px;
+}
+
+.favorite-card-front .p-3 {
+    flex-grow: 1; /* Allow text area to take remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center text vertically */
+    padding: 15px;
+}
+
+        .gallery-item {
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 8px;
+            transition: transform 0.3s;
+            border: 1px solid var(--neon-primary);
+        }
+
+        body[data-bs-theme="light"] .gallery-item {
+            border: 1px solid rgba(0, 0, 0, 0.125);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .modal-content {
+            background-color: rgba(10, 10, 32, 0.95);
+            border: 1px solid var(--neon-primary);
+            color: var(--neon-light);
+        }
+
+        body[data-bs-theme="light"] .modal-content {
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            color: var(--light-text);
+        }
+
+        .modal-header {
+            border-bottom: 1px solid var(--neon-primary);
+        }
+
+        body[data-bs-theme="light"] .modal-header {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-footer {
+            border-top: 1px solid var(--neon-primary);
+        }
+
+        body[data-bs-theme="light"] .modal-footer {
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-close {
+            filter: invert(1);
+        }
+
+        body[data-bs-theme="light"] .btn-close {
+            filter: none;
+        }
+
+        /* Music Player Styles */
+        .music-player {
+            background-color: rgba(20, 20, 50, 0.7);
+            border: 1px solid var(--neon-primary);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        body[data-bs-theme="light"] .music-player {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.125);
+        }
+
+        /* Wadah utama untuk menyelaraskan cover dan teks */
+.music-container {
+    display: flex; /* Aktifkan Flexbox */
+    align-items: center; /* Sejajarkan elemen secara vertikal di tengah */
+    gap: 20px; /* Jarak antara elemen (cover dan teks) */
+}
+
+.music-cover {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid var(--neon-primary);
+}
+
+body[data-bs-theme="light"] .music-cover {
+    border: 2px solid rgba(13, 110, 253, 0.7);
+}
+
+.music-info {
+    /* Tidak perlu margin-left karena sudah diatur oleh gap di Flexbox */
+}
+
+.music-title {
+    font-size: 1.5rem;
+    color: var(--neon-primary);
+    margin-bottom: 5px;
+}
+
+body[data-bs-theme="light"] .music-title {
+    color: #0d6efd;
+}
+
+.music-artist {
+    font-size: 1rem;
+    color: var(--neon-light);
+    margin-bottom: 15px;
+}
+
+body[data-bs-theme="light"] .music-artist {
+    color: var(--light-text);
+}
+
+        .music-controls {
+            margin-top: 15px;
+        }
+
+        .music-progress {
+            width: 100%;
+            height: 5px;
+            background-color: rgba(0, 255, 255, 0.2);
+            border-radius: 5px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        body[data-bs-theme="light"] .music-progress {
+            background-color: rgba(13, 110, 253, 0.2);
+        }
+
+        .music-progress-bar {
+            height: 100%;
+            background-color: var(--neon-primary);
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        body[data-bs-theme="light"] .music-progress-bar {
+            background-color: #0d6efd;
+        }
+
+        .music-time {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--neon-light);
+        }
+
+        body[data-bs-theme="light"] .music-time {
+            color: var(--light-text);
+        }
+
+        .music-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .music-btn {
+            background: none;
+            border: none;
+            color: var(--neon-primary);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        body[data-bs-theme="light"] .music-btn {
+            color: #0d6efd;
+        }
+
+        .music-btn:hover {
+            color: var(--neon-secondary);
+            transform: scale(1.1);
+        }
+
+        body[data-bs-theme="light"] .music-btn:hover {
+            color: #6610f2;
+        }
+
+        .play-btn {
+            font-size: 2.5rem;
+        }
+
+        /* Expanded Favorites Section */
+        .expanded-favorites {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .see-all-btn {
+            margin-top: 15px;
+            background-color: transparent;
+            border: 1px solid var(--neon-primary);
+            color: var(--neon-primary);
+            transition: all 0.3s;
+        }
+
+        body[data-bs-theme="light"] .see-all-btn {
+            border: 1px solid #0d6efd;
+            color: #0d6efd;
+        }
+
+        .see-all-btn:hover {
+            background-color: var(--neon-primary);
+            color: var(--neon-dark);
+            box-shadow: var(--neon-glow);
+        }
+
+        body[data-bs-theme="light"] .see-all-btn:hover {
+            background-color: #0d6efd;
+            color: white;
+            box-shadow: 0 0 10px rgba(13, 110, 253, 0.3);
+        }
+
+        /* Additional Dashboard Cards */
+        .dashboard-card {
+            height: 100%;
+            transition: all 0.3s;
+        }
+
+        .dashboard-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--neon-primary);
+        }
+
+        body[data-bs-theme="light"] .dashboard-card-icon {
+            color: #0d6efd;
+        }
+
+        /* PIN Modal */
+        .pin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pin-container {
+            background-color: rgba(20, 20, 50, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid var(--neon-primary);
+            box-shadow: var(--neon-glow);
+            max-width: 400px;
+            width: 90%;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .pin-container.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        body[data-bs-theme="light"] .pin-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(13, 110, 253, 0.7);
+            box-shadow: 0 0 20px rgba(13, 110, 253, 0.3);
+        }
+
+        .pin-input {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .pin-digit {
+            width: 40px;
+            height: 50px;
+            margin: 0 5px;
+            text-align: center;
+            font-size: 1.5rem;
+            border: 1px solid var(--neon-primary);
+            background-color: rgba(10, 10, 32, 0.7);
+            color: var(--neon-light);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .pin-digit:focus {
+            border-color: var(--neon-secondary);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+            outline: none;
+        }
+
+        body[data-bs-theme="light"] .pin-digit {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(13, 110, 253, 0.5);
+            color: var(--light-text);
+        }
+
+        .pin-error {
+            color: #ff6b6b;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+
+        .pin-success {
+            color: var(--neon-tertiary);
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        /* Settings Content - Initially Hidden */
+        .settings-content {
+    display: none;
+}
+
+.settings-content.show {
+    display: block !important;
+    animation: fadeIn 0.5s;
+}
+
+        /* Notification Toast */
+        .toast-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2100;
+            background-color: rgba(20, 20, 50, 0.9);
+            border: 1px solid var(--neon-primary);
+            color: var(--neon-light);
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: var(--neon-glow);
+            transform: translateY(-100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-notification.success {
+            border-color: var(--neon-tertiary);
+            color: var(--neon-tertiary);
+        }
+
+        .toast-notification.error {
+            border-color: #ff6b6b;
+            color: #ff6b6b;
+        }
+
+        @media (max-width: 991px) {
+            body {
+                padding-left: 0;
+                padding-bottom: 120px; /* Increased padding for bottom nav */
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.show {
+                transform: translateX(0);
+            }
+            .main-content {
+                padding: 15px;
+            }
+
+            .timeline:before {
+                left: 31px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                width: calc(100% - 90px);
+                margin-left: 70px;
+            }
+
+            /* Adjust bottom nav for mobile */
+            .bottom-nav {
+                padding: 15px 0;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(20, 20, 50, 0.5);
+        }
+
+        body[data-bs-theme="light"] ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-primary);
+            border-radius: 10px;
+        }
+
+        body[data-bs-theme="light"] ::-webkit-scrollbar-thumb {
+            background: #0d6efd;
+        }
+    </style>
+</head>
+<body data-bs-theme="dark">
+    <!-- Sidebar (Desktop) -->
+    <div class="sidebar d-none d-lg-block">
+        <div class="text-center py-4">
+            <img src="image/profil.png" alt="Profile" class="profile-img rounded-circle mb-3" data-aos="zoom-in">
+            <h5 class="neon-text">CR7</h5>
+            <p class="text-muted">Footballer</p>
+            
+            <div class="social-icons mb-4">
+                <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="me-3"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
+                <a href="#" class=""><i class="bi bi-envelope"></i></a>
+            </div>
+        </div>
+        <ul class="nav flex-column px-3">
+            <li class="nav-item">
+                <a class="nav-link active" href="#dashboard"><i class="bi bi-grid"></i> Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#gallery"><i class="bi bi-image"></i> Gallery</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#favorites"><i class="bi bi-heart"></i> Favorites</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#adventure"><i class="bi bi-map"></i> My Adventure</a>
+            </li>
+            <li class="nav-item mt-auto">
+                <a class="nav-link settings-link" href="#settings"><i class="bi bi-gear"></i> Settings</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Mobile Navbar Toggle -->
+<button class="btn btn-primary d-lg-none fixed-top m-3 custom-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+    <i class="bi bi-list"></i>
+</button>
+
+<style>
+    /* Gaya kustom untuk mengurangi lebar tombol */
+    .custom-btn {
+        padding-left: 0.4rem;   /* Kurangi padding horizontal */
+        padding-right: 0.4rem;  /* Kurangi padding horizontal */
+        font-size: 0.9rem;      /* Kurangi ukuran font */
+        max-width: 35px;        /* Batasi lebar maksimum */
+        text-align: center;     /* Pusatkan ikon */
+    }
+</style>
+
+    <!-- Mobile Sidebar Offcanvas -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title neon-text">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="text-center py-3">
+                <img src="image/profil.png" alt="Profile" class="profile-img rounded-circle mb-3">
+                <h5 class="neon-text">CR7</h5>
+                <p class="text-muted">Footballer</p>
+                
+                <div class="social-icons mb-4">
+                    <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="sidorusarmansyukurwaruw99@gmail.com" class=""><i class="bi bi-envelope"></i></a>
+                </div>
+            </div>
+            
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#dashboard" data-bs-dismiss="offcanvas"><i class="bi bi-grid"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#gallery" data-bs-dismiss="offcanvas"><i class="bi bi-image"></i> Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#favorites" data-bs-dismiss="offcanvas"><i class="bi bi-heart"></i> Favorites</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#adventure" data-bs-dismiss="offcanvas"><i class="bi bi-map"></i> My Adventure</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link settings-link" href="#settings" data-bs-dismiss="offcanvas"><i class="bi bi-gear"></i> Settings</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bottom Navbar (Mobile) -->
+    <nav class="bottom-nav d-lg-none">
+        <a href="#dashboard" class="nav-link active">
+            <i class="bi bi-grid"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="#gallery" class="nav-link">
+            <i class="bi bi-image"></i>
+            <span>Gallery</span>
+        </a>
+        <a href="#favorites" class="nav-link">
+            <i class="bi bi-heart"></i>
+            <span>Favorites</span>
+        </a>
+        <a href="#adventure" class="nav-link">
+            <i class="bi bi-map"></i>
+            <span>Adventure</span>
+        </a>
+        <a href="#settings" class="nav-link settings-link">
+            <i class="bi bi-gear"></i>
+            <span>Settings</span>
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Dashboard -->
+        <section id="dashboard" class="container py-5">
+            <h1 class="mb-4 neon-text" data-aos="fade-up">Dashboard</h1>
+            <div class="row">
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 dashboard-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-image dashboard-card-icon"></i>
+                            <h5 class="card-title neon-text">Gallery</h5>
+                            <p class="card-text display-5 fw-bold">50</p>
+                            <p class="text-muted">Items</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 dashboard-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-map dashboard-card-icon"></i>
+                            <h5 class="card-title neon-text">Adventures</h5>
+                            <p class="card-text display-5 fw-bold">10</p>
+                            <p class="text-muted">Trips</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100 dashboard-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-heart dashboard-card-icon"></i>
+                            <h5 class="card-title neon-text">Favorites</h5>
+                            <p class="card-text display-5 fw-bold">20</p>
+                            <p class="text-muted">Items</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card h-100 dashboard-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-music-note-beamed dashboard-card-icon"></i>
+                            <h5 class="card-title neon-text">Songs</h5>
+                            <p class="card-text display-5 fw-bold">150</p>
+                            <p class="text-muted">In playlist</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="card p-4 h-100">
+                        <h3 class="mb-4 neon-text">About Me</h3>
+                        <p>Halo! Saya seorang penggemar sepak bola yang bersemangat dengan pengetahuan mendalam tentang strategi dan teknik permainan modern. Saya memiliki pengalaman lebih dari 5 tahun dalam menganalisis pertandingan dan taktik pemain.
+                            Ketika saya tidak menonton pertandingan, Anda bisa menemukan saya menjelajahi lapangan sepak bola, mencoba berbagai formasi, atau menganalisis pemain favorit saya. Saya percaya dalam terus belajar dan meningkatkan kemampuan analisis sepak bola.
+                            Tujuan saya adalah memahami dan mengapresiasi keindahan permainan sepak bola yang tidak hanya menarik secara visual tetapi juga strategis dan menghibur.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="card p-4 h-100">
+                        <h3 class="mb-4 neon-text">Recent Activity</h3>
+                        <div class="activity-item mb-3">
+                            <div class="d-flex justify-content-between">
+                                <strong>Added new photos</strong>
+                                <small class="text-muted">2 hours ago</small>
+                            </div>
+                            <p>Uploaded 5 new pictures from my Bali trip</p>
+                        </div>
+                        <div class="activity-item mb-3">
+                            <div class="d-flex justify-content-between">
+                                <strong>Updated favorites</strong>
+                                <small class="text-muted">1 day ago</small>
+                            </div>
+                            <p>Added new favorite restaurant to my list</p>
+                        </div>
+                        <div class="activity-item">
+                            <div class="d-flex justify-content-between">
+                                <strong>Completed project</strong>
+                                <small class="text-muted">3 days ago</small>
+                            </div>
+                            <p>Finished working on the new portfolio website</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section id="gallery" class="container py-5">
+            <h1 class="mb-4 neon-text" data-aos="fade-up">Gallery</h1>
+            <ul class="nav nav-tabs mb-4" data-aos="fade-up">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#photos">Photos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#videos">Videos</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="photos">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up">
+                            <div class="gallery-item">
+                                <img src="asset/foto/1.png" alt="Nature" class="gallery-img" data-bs-toggle="modal" data-bs-target="#imageModal" data-img="https://source.unsplash.com/random/600x400?nature">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                            <div class="gallery-item">
+                                <img src="asset/foto/2.png" alt="City" class="gallery-img" data-bs-toggle="modal" data-bs-target="#imageModal" data-img="https://source.unsplash.com/random/600x400?city">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="gallery-item">
+                                <img src="asset/foto/3.png" alt="People" class="gallery-img" data-bs-toggle="modal" data-bs-target="#imageModal" data-img="https://source.unsplash.com/random/600x400?people">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                            <div class="gallery-item">
+                                <img src="asset/foto/4.png" alt="Architecture" class="gallery-img" data-bs-toggle="modal" data-bs-target="#imageModal" data-img="https://source.unsplash.com/random/600x400?architecture">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                            <div class="gallery-item">
+                                <img src="asset/foto/5.png" alt="Travel" class="gallery-img" data-bs-toggle="modal" data-bs-target="#imageModal" data-img="https://source.unsplash.com/random/600x400?travel">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+                            <div class="gallery-item">
+                                <img src="asset/foto/6.png" alt="Food" class="gallery-img" data-bs-toggle="modal" data-bs-target="#imageModal" data-img="https://scontent.fkno9-1.fna.fbcdn.net/o1/v/t0/f2/m340/AQM0HwBMPNmeYBxWrbYcOsS3uCzyHcakzrQk7TzrMqbmHWmybOigHv5VDINZbFgD0n17IQAxNKQZFz3wH9MAP3pu2St-y0HYlB1R4HwS905_x3j8LVV7cTA2KJkhMmzy0qEnjaxY6rgpBEwrzGfvzGuHlU6h.jpeg?stp=s600x600&_nc_ht=scontent.fkno9-1.fna.fbcdn.net&_nc_gid=4Lofm2jdNjzmJA-xaaN7kQ&_nc_cat=111&_nc_oc=AdlGPgVdmEBGenjNpH-hR9v9lBlHIsTkvzK5uOpmCTzM6syCkkud79O241kcPvrgbCU&ccb=9-4&oh=00_AfFFYuYy_yZfjdhqitNten7ANdPyas_UAy0NlKBH6P1ySg&oe=67FBBBB2&_nc_sid=5b3566">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="videos">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up">
+                            <div class="gallery-item">
+                                <img src="asset/image/pantai.png" alt="Beach Video" class="gallery-img" data-bs-toggle="modal" data-bs-target="#videoModal" data-video="asset/video/pantai.mp4">
+                                <div class="position-absolute top-50 start-50 translate-middle">
+                                    <i class="bi bi-play-circle-fill text-white fs-1" style="text-shadow: 0 0 10px rgba(0,0,0,0.5);"></i>
+                                </div>
+                            </div>
+                            <h5 class="mt-2 neon-text">Beautiful Beach</h5>
+                        </div>
+                        <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                            <div class="gallery-item">
+                                <img src="asset/image/gunung.png" alt="Mountain Video" class="gallery-img" data-bs-toggle="modal" data-bs-target="#videoModal" data-video="asset/video/guning.mp4">
+                                <div class="position-absolute top-50 start-50 translate-middle">
+                                    <i class="bi bi-play-circle-fill text-white fs-1" style="text-shadow: 0 0 10px rgba(0,0,0,0.5);"></i>
+                                </div>
+                            </div>
+                            <h5 class="mt-2 neon-text">Majestic Mountains</h5>
+                        </div>
+                        <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="gallery-item">
+                                <img src="asset/image/musik.png" alt="Concert Video" class="gallery-img" data-bs-toggle="modal" data-bs-target="#videoModal" data-video="asset/video/musik.mp4">
+                                <div class="position-absolute top-50 start-50 translate-middle">
+                                    <i class="bi bi-play-circle-fill text-white fs-1" style="text-shadow: 0 0 10px rgba(0,0,0,0.5);"></i>
+                                </div>
+                            </div>
+                            <h5 class="mt-2 neon-text">Music Festival</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Favorites -->
+        <section id="favorites" class="container py-5">
+            <h1 class="mb-4 neon-text" data-aos="fade-up">Favorites</h1>
+            <div class="row">
+                <!-- Food Card -->
+                <div class="col-md-4 mb-4" data-aos="flip-left">
+                    <div class="favorite-card" style="height: 300px;">
+                        <div class="favorite-card-front">
+                            <img src="https://scontent.fkno9-1.fna.fbcdn.net/o1/v/t0/f2/m340/AQMBPqFi0YxTz51bLZrntq9o3xu1GQ-bhU31S4vUk1iLsVryili3hmUc6wxRyPYDQX_nKw78eaoU_Rmdtm9zF3JJzkTE2UnsnlWntmcegBuQ86OVxOVgE3vzUWTDTXewtJgKC0WqwKgr-ghQFJrnaPScj6pQ.jpeg?stp=s600x600&_nc_ht=scontent.fkno9-1.fna.fbcdn.net&_nc_gid=BZ4mAxfzdaUelQHz2ACLug&_nc_cat=109&_nc_oc=AdkLuAJpU4XC3rauvhAAX6cMMHVZYn_pPBqoN8RtiUbwKf-s2znfaNqVxATcgsPQImU&ccb=9-4&oh=00_AfHNgCNTlbCkdyexqmmEmDeAZm74ky_zAjRKt7W_QSUtkQ&oe=67FBCC18&_nc_sid=5b3566" alt="Pasta" class="img-fluid rounded-top">
+                            <div class="p-3">
+                                <h5 class="neon-text">Makanan</h5>
+                                <p>Click to see description</p>
+                            </div>
+                        </div>
+                        <div class="favorite-card-back p-3">
+                            <h5 class="neon-text">Makanan Faforit</h5>
+                            <p>Makanan favorit aku adalah sesuatu yang bikin aku pengen makan terus! Enak, lezat, dan bikin aku bahagia. Kamu tahu apa itu?</p>
+                            <button class="btn btn-primary see-all-btn mt-2" data-target="food-expanded">See All</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Music Card -->
+                <div class="col-md-4 mb-4" data-aos="flip-left" data-aos-delay="100">
+                    <div class="favorite-card" style="height: 300px;">
+                        <div class="favorite-card-front">
+                            <img src="asset/foto/musikhobby.png" alt="Rock Music" class="img-fluid rounded-top">
+                            <div class="p-3">
+                                <h5 class="neon-text">Musik</h5>
+                                <p>Click to see description</p>
+                            </div>
+                        </div>
+                        <div class="favorite-card-back p-3">
+                            <h5 class="neon-text">Musik Faforit </h5>
+                            <p>Musik favoritmu saya tuh seperti pelukan hangat di saat sedih, liriknya bikin merasa terhubung, dan melodinya membangkitkan emosi yang terpendam. Setiap nada jadi pengingat kenangan pahit atau manis yang pernah aku lalui.</p>
+                            <button class="btn btn-primary see-all-btn mt-2" data-target="music-expanded">See All</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hobbies Card -->
+                <div class="col-md-4 mb-4" data-aos="flip-left" data-aos-delay="200">
+                    <div class="favorite-card" style="height: 300px;">
+                        <div class="favorite-card-front">
+                            <img src="asset/foto/hobbysport.png" alt="Hiking" class="img-fluid rounded-top">
+                            <div class="p-3">
+                                <h5 class="neon-text">Hobby</h5>
+                                <p>Click to see description</p>
+                            </div>
+                        </div>
+                        <div class="favorite-card-back p-3">
+                            <h5 class="neon-text">Mountain Hiking</h5>
+                            <p>Hobi Saya tuh jadi pelarian dari penatnya aktivitas sehari-hari, bikin Saya lebih rileks, dan memberi ruang untuk ekspresi diri.</p>
+                            <button class="btn btn-primary see-all-btn mt-2" data-target="hobbies-expanded">See All</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Expanded Food Favorites -->
+            <div id="food-expanded" class="expanded-favorites">
+                <h3 class="mb-4 neon-text">My Favorite Foods</h3>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="asset/makanan/pasta.png" class="card-img-top" alt="Pasta Carbonara">
+                            <div class="card-body">
+                                <h5 class="card-title neon-text">Pasta Carbonara</h5>
+                                <p class="card-text">Makanan pasta Roma yang autentik terbuat dari telur, keju, pancetta, dan lada.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="asset/makanan/sushi.png" class="card-img-top" alt="Sushi">
+                            <div class="card-body">
+                                <h5 class="card-title neon-text">Sushi</h5>
+                                <p class="card-text">Ikan mentah segar dan nasi yang dibumbui dengan sempurna - pilihan utama untuk makanan ringan dan sehat.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="asset/makanan/pizza.png" class="card-img-top" alt="Pizza">
+                            <div class="card-body">
+                                <h5 class="card-title neon-text">Neapolitan Pizza</h5>
+                                <p class="card-text">Pizza bakar kayu dengan bahan-bahan sederhana berkualitas tinggi dan kerak yang sempurna.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="asset/makanan/burger.png" class="card-img-top" alt="Burger">
+                            <div class="card-body">
+                                <h5 class="card-title neon-text">Gourmet Burgers</h5>
+                                <p class="card-text">Burger dengan patty yang juicy dan topping kreatif - makanan nyaman yang jadi favoritku.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="asset/makanan/cream.png" class="card-img-top" alt="Ice Cream">
+                            <div class="card-body">
+                                <h5 class="card-title neon-text">Artisanal Ice Cream</h5>
+                                <p class="card-text">Es krim buatan tangan dengan rasa unik - sempurna untuk dessert kapan saja!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Expanded Music Favorites -->
+<div id="music-expanded" class="expanded-favorites">
+    <h3 class="mb-4 neon-text">My Favorite Music</h3>
+    
+    <!-- Music Players will be dynamically generated here -->
+    <div id="music-container">
+        <!-- Music players will be added here by JavaScript -->
+    </div>
+</div>
+
+                       
+            <!-- Expanded Hobbies Favorites -->
+            <div id="hobbies-expanded" class="expanded-favorites">
+                <h3 class="mb-4 neon-text">My Hobbies</h3>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="https://scontent.fkno9-1.fna.fbcdn.net/o1/v/t0/f2/m340/AQOcQ-_AzOxOqA5MKupRVtjDHDp4coZ1mdP68JCxuAra50zP3MAy93NxPwq8Rq0_lZlzKep4wbfWQBq4x6_g1rOtRPfI6etUNiLWyNu6gs7hpvGQMvLpcdBCVTcVk1a43K7mYYVWw6aDIzcnxDMhtUMX0OEXZA.jpeg?stp=s600x600&_nc_ht=scontent.fkno9-1.fna.fbcdn.net&_nc_gid=hmA_D6G4fLA4wq87SaDyHQ&_nc_cat=103&_nc_oc=AdlBncOZYq8ZfwEBu6juUoPLB_UjhvNhYK5ltRCnYOsLDUMXqywINQTAW9lBCe3NRoA&ccb=9-4&oh=00_AfE7OAzzJM4Tig_yKRaoaPdacQgPjMfQzD_IjemLXRNZYg&oe=67FBD4DA&_nc_sid=5b3566" class="card-img-top" alt="Hiking">
+                            <div class="card-body">
+                                <h5 class="card-title neon-text">Mountain Hiking</h5>
+                                <p class="card-text">Menjelajahi jalur alam dan puncak gunung adalah cara favorit saya untuk tetap aktif dan terhubung dengan alam.</p>
+                                <p><strong>Pencapaian:</strong>  Menyelesaikan 10+ jalur menantang, mencapai 3 puncak gunung</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="https://scontent.fkno9-1.fna.fbcdn.net/o1/v/t0/f2/m340/AQMnyVJMkuqrZKsR_PrYXGQ1OGdE70g70tpBR_Vo1v2zr1ak6jYcRmQldlQ-O8RlX9JGlf5PP_B2TexmCxKTsxEbpQCalUK0kj5VUEvSdAtNRyY-mSQeMTpH6QV0YSygU6jj_4gHXvVuKc-pk0XfFMV3CQFrGw.jpeg?stp=s600x600&_nc_ht=scontent.fkno9-1.fna.fbcdn.net&_nc_gid=hmA_D6G4fLA4wq87SaDyHQ&_nc_cat=101&_nc_oc=AdnlwP3hAdx2yziQHs5Uqo2ufUkkajjY8WdwJl4GtKRBwCyYmPUTZh7CVdXUclJrtTQ&ccb=9-4&oh=00_AfEpYPTPDbJNbGWA-rSFleBAvZ0Oal_pBINtetUqO-DBLA&oe=67FBC130&_nc_sid=5b3566" class="card-img-top" alt="Basketball">
+                            <div class="card-body">
+                                <h5 class="card-title neon-text">Basketball</h5>
+                                <p class="card-text">Bermain basket sejak SMA - bagus untuk kebugaran dan kerja sama tim.</p>
+                                <p><strong>Pencapaian:</strong> Pemain tim universitas, pemenang turnamen lokal 3 kali.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="https://scontent.fkno9-1.fna.fbcdn.net/o1/v/t0/f2/m340/AQO6oNLkvVYHC__ebKWzkiVj5xwHxEJ3wErObsCbxvujA1Z0YOS8IPuBRvgrJhfJF5iY0RHbG3DCQOQt5d2XsHQQv4M4-kOFAZZ2Zfi0SYDM2uTfL1BX1kRJhiDCGHoh6kzi4L2sDyys6_ant6hX7nPAPxiflw.jpeg?stp=s600x600&_nc_ht=scontent.fkno9-1.fna.fbcdn.net&_nc_gid=hmA_D6G4fLA4wq87SaDyHQ&_nc_cat=107&_nc_oc=AdlpCkhbuWV_LTwC4tLRS4thgR_PHINqnpR7LnVIHeTswuB0sCIOdhQ09NNPpOyw-mU&ccb=9-4&oh=00_AfHw6drk9NIvId9pItHn-t7subfwmwJpS_3LjM1PA4g_8w&oe=67FBE92E&_nc_sid=5b3566" class="card-img-top" alt="Badminton">
+                            <div class="card-body">
+                                <h5 class="card-title neon-text">Badminton</h5>
+                                <p class="card-text">Olahraga raket berkecepatan tinggi yang meningkatkan refleks dan koordinasi.</p>
+                                <p><strong>Pencapaian:</strong> Juara klub selama 2 tahun berturut-turut.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="https://scontent.fkno9-1.fna.fbcdn.net/o1/v/t0/f2/m340/AQOupqJwTGYvBvXNMlX-fJTdHjxxNL9FM_pBcxa_3rau7XjFaGE93U0NOEtMSn7ir-uH5yHnw1bnurEzAUFTRhOUO8zye4f6pxdsYgC02uQWi0g8YaV4gSgePsVYkCOoHvfOSwFjgAGxmrLHN593XDsB6F2i.jpeg?stp=s600x600&_nc_ht=scontent.fkno9-1.fna.fbcdn.net&_nc_gid=hmA_D6G4fLA4wq87SaDyHQ&_nc_cat=107&_nc_oc=AdnsT8SlTFREBE-KynRFGdG2C2Bbo3nIwKC0B4rPg8JrlybNeUH8VONLHEyTBNBq-b0&ccb=9-4&oh=00_AfESiBXz53eaBMRruMj4eHXsGni6i-0BdQE9j7vOPJVQWQ&oe=67FBC772&_nc_sid=5b3566" class="card-img-top" alt="Table Tennis">
+                            <div class="card-body">
+                                <h5 class="card-title neon-text">Table Tennis</h5>
+                                <p class="card-text">Permainan cepat dan strategis yang sempurna untuk dimainkan di dalam ruangan.</p>
+                                <p><strong>Pencapaian:</strong> Juara turnamen kantor.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="https://scontent.fkno9-1.fna.fbcdn.net/o1/v/t0/f2/m340/AQM9lJaC_NSKmnzxv9XQO3nhpleitdW8TEHQ_Ltj56j-Ka9Ryw977zeV5F_LFYGo6NswF-AupQ3Xhjsb7-8uJ1DrTlF_t5uRw8r2sEFuiIjdFpR7T0PbKD8ErJ5I2jxLbS3hVOTPRQWnXIJIypOCXxHH7zjN2Q.jpeg?stp=s600x600&_nc_ht=scontent.fkno9-1.fna.fbcdn.net&_nc_gid=1yFZ02dXx0waSjB-Yw56cg&_nc_cat=106&_nc_oc=Adni59BsVUSklYMJRBq3OqK6GL_VhRJBOrZ45el_QhPmz8NFrEbodKtLXejntdRTAUc&ccb=9-4&oh=00_AfFj3SsjloMG45duATffsBP-13qMzg1XNEAJFRD-wLzx-A&oe=67FBE131&_nc_sid=5b3566" class="card-img-top" alt="Volleyball">
+                            <div class="card-body">
+                                <h5 class="card-title neon-text">Volleyball</h5>
+                                <p class="card-text">Olahraga tim yang menggabungkan atletis dan strategi di pantai atau lapangan.</p>
+                                <p><strong>Pencapaian:</strong> Peserta liga voli.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Adventure -->
+        <section id="adventure" class="container py-5">
+            <h1 class="mb-4 neon-text" data-aos="fade-up">My Adventure</h1>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <img src="asset/foto/bali.png" alt="Bali" class="img-fluid rounded">
+                        <h5 class="neon-text">Bali Trip</h5>
+                        <p class="text-muted">June 2023</p>
+                        <p>Ku sudah pernah ke Bali, eksplore pura kuno, pantai yang indah, dan budaya yang semarak. Yang paling berkesan adalah teras sawah Ubud dan pemandangan tebing Uluwatu.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+                    <div class="timeline-content">
+                        <img src="asset/foto/tokyo.png" alt="Tokyo" class="img-fluid rounded">
+                        <h5 class="neon-text">Tokyo Exploration</h5>
+                        <p class="text-muted">April 2022</p>
+                        <p>Menikmati perpaduan budaya tradisional dan futuristik di Tokyo. Mengunjungi Penyeberangan Shibuya, Kuil Asakusa, dan menikmati sushi autentik.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+                    <div class="timeline-content">
+                        <img src="asset/foto/paris.png" alt="Paris" class="img-fluid rounded">
+                        <h5 class="neon-text">Paris Getaway</h5>
+                        <p class="text-muted">September 2021</p>
+                        <p>Minggu romantis di Paris mengunjungi Menara Eiffel, Museum Louvre, dan Montmartre. Menikmati croissant dan kopi di kafe-kafe yang menawan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings -->
+        <section id="settings" class="container py-5">
+            <h1 class="mb-4 neon-text" data-aos="fade-up">Settings</h1>
+            
+            <div class="settings-content" id="settingsContent">
+                <div class="row">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <div class="card p-4 mb-4">
+                            <h3 class="mb-4 neon-text">Profile Settings</h3>
+                            
+                            <div class="text-center mb-4">
+                                <img src="image/profil.png" alt="Profile" id="profilePreview" class="profile-img rounded-circle mb-3">
+                                <input type="file" id="profileUpload" class="d-none" accept="image/*">
+                                <button class="btn btn-primary" onclick="document.getElementById('profileUpload').click()">Upload Photo</button>
+                            </div>
+                            
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" value="CR7">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="profession" class="form-label">Profession</label>
+                                    <input type="text" class="form-control" id="profession" value="Footballer">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bio" class="form-label">Bio</label>
+                                    <textarea class="form-control" id="bio" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="card p-4">
+                            <h3 class="mb-4 neon-text">Theme Settings</h3>
+                            
+                            <div class="form-check form-switch mb-4">
+                                <input class="form-check-input" type="checkbox" id="darkModeToggle" checked>
+                                <label class="form-check-label" for="darkModeToggle">Dark Mode</label>
+                            </div>
+                            
+                            <h4 class="mb-3 neon-text">Theme Color</h4>
+                            <div class="d-flex gap-2 mb-4">
+                                <button class="btn btn-primary theme-color active" data-color="primary">Default</button>
+                                <button class="btn btn-danger theme-color" data-color="danger">Red</button>
+                                <button class="btn btn-success theme-color" data-color="success">Green</button>
+                                <button class="btn btn-warning theme-color" data-color="warning">Yellow</button>
+                                <button class="btn btn-info theme-color" data-color="info">Cyan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4" id="settingsLocked">
+                <i class="bi bi-lock-fill" style="font-size: 3rem; color: var(--neon-primary);"></i>
+                <h3 class="neon-text mt-3">Settings Locked</h3>
+                <p>Please enter your PIN to access settings</p>
+                <button class="btn btn-primary" id="unlockSettingsBtn">Enter PIN</button>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Image Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <img src="" alt="" id="modalImage" class="img-fluid">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Video Modal -->
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="ratio ratio-16x9">
+                        <iframe id="modalVideo" src="" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PIN Modal -->
+    <div class="pin-modal" id="pinModal">
+        <div class="pin-container" id="pinContainer">
+            <h3 class="neon-text text-center mb-4">Enter PIN</h3>
+            <p class="text-center mb-4">Please enter your 6-digit PIN to access settings</p>
+            <div class="pin-input">
+                <input type="password" maxlength="1" class="pin-digit" data-index="1">
+                <input type="password" maxlength="1" class="pin-digit" data-index="2">
+                <input type="password" maxlength="1" class="pin-digit" data-index="3">
+                <input type="password" maxlength="1" class="pin-digit" data-index="4">
+                <input type="password" maxlength="1" class="pin-digit" data-index="5">
+                <input type="password" maxlength="1" class="pin-digit" data-index="6">
+            </div>
+            <p class="pin-error">Incorrect PIN. Please try again.</p>
+            <p class="pin-success">PIN correct! Access granted.</p>
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" id="pinSubmit">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast-notification" id="toastNotification"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Music data
+    const songs = [
+        { 
+            title: 'Somebody Pleasure', 
+            artist: 'Aziz Hedra', 
+            cover: 'image/Aziz Hedra.png', 
+            url: 'song/Aziz Hedra - Somebodys Pleasure (Official Lyric Video).mp3' 
+        },
+        { 
+            title: 'Heather', 
+            artist: 'Conan Ray', 
+            cover: 'image/conangray.png', 
+            url: 'song/Conan Gray - Heather (Lyric Video).mp3' 
+        },
+        { 
+            title: 'Dive', 
+            artist: 'Bless Trio', 
+            cover: 'image/Ed Sheeran.png', 
+            url: 'song/DIVE - Ed Sheeran (LyricsVietsub).mp3' 
+        },
+        { 
+            title: 'The Last Night Day', 
+            artist: 'MLTR', 
+            cover: 'image/MLTR.png', 
+            url: 'song/Green Day - Last Night On Earth (cover).mp3' 
+        },
+        { 
+            title: 'Heres Yours Perfect', 
+            artist: 'Jamie Miller', 
+            cover: 'image/Jamie Miller.png', 
+            url: 'song/Jamie Miller - Heres Your Perfect (Official Music Video).mp3' 
+        },
+        { 
+            title: 'To The Bone', 
+            artist: 'Pamungkas', 
+            cover: 'image/pamungkas.png', 
+            url: 'song/Pamungkas - To The Bone.mp3' 
+        },
+        { 
+            title: 'God Speed', 
+            artist: 'Stormzy', 
+            cover: 'image/stromy.png', 
+            url: 'song/Stormzy - Godspeed  Frank Ocean Cover.mp3' 
+        },
+        { 
+            title: 'Blue', 
+            artist: 'Yung Kai', 
+            cover: 'image/blue.png', 
+            url: 'song/yung kai - blue (Official Music Video).mp3' 
+        },
+        { 
+            title: 'The Only Exception', 
+            artist: 'Paramore', 
+            cover: 'image/Paramore.png', 
+            url: 'song/Paramore The Only Exception [OFFICIAL VIDEO].mp3' 
+        },
+        { 
+            title: 'Kutunggu Kau Putus', 
+            artist: 'Sheryl Sheinafia', 
+            cover: 'image/Sheryl Sheinafia.png', 
+            url: 'song/Sheryl Sheinafia Feat. Ariel NOAH - Kutunggu Kau Putus (Official Music Video).mp3' 
+        },
+        { 
+            title: 'Walking Back Home', 
+            artist: 'Vira Talisa Dharmawan', 
+            cover: 'image/viratalisa.png', 
+            url: 'song/Vira Talisa Dharmawan - Walking Back Home.mp3' 
+        }
+    ];
+
+    // Function to generate music players
+    function generateMusicPlayers() {
+        const container = document.getElementById('music-container');
+        
+        songs.forEach((song, index) => {
+            const playerHTML = `
+                <div class="music-player mb-4" data-index="${index}">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 text-center">
+                            <img src="${song.cover}" alt="${song.artist}" class="music-cover">
+                        </div>
+                        <div class="col-md-9 music-info">
+                            <h4 class="music-title">${song.title}</h4>
+                            <p class="music-artist">${song.artist}</p>
+                            <div class="music-controls">
+                                <div class="music-progress">
+                                    <div class="music-progress-bar" style="width: 0%"></div>
+                                </div>
+                                <div class="music-time">
+                                    <span class="current-time">0:00</span>
+                                    <span class="duration">0:00</span>
+                                </div>
+                                <div class="music-buttons">
+                                    <button class="music-btn prev-btn"><i class="bi bi-skip-backward-fill"></i></button>
+                                    <button class="music-btn play-btn"><i class="bi bi-play-fill"></i></button>
+                                    <button class="music-btn next-btn"><i class="bi bi-skip-forward-fill"></i></button>
+                                </div>
+                            </div>
+                            <audio class="audio-player" src="${song.url}"></audio>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.innerHTML += playerHTML;
+        });
+    }
+
+    // Function to handle music player controls
+    function setupMusicControls() {
+        const players = document.querySelectorAll('.music-player');
+        
+        players.forEach(player => {
+            const audio = player.querySelector('.audio-player');
+            const playBtn = player.querySelector('.play-btn');
+            const progressBar = player.querySelector('.music-progress-bar');
+            const currentTime = player.querySelector('.current-time');
+            const duration = player.querySelector('.duration');
+            
+            // Play/Pause functionality
+            playBtn.addEventListener('click', () => {
+                if (audio.paused) {
+                    // Pause all other players
+                    document.querySelectorAll('.audio-player').forEach(a => {
+                        if (a !== audio) a.pause();
+                    });
+                    // Update all play buttons
+                    document.querySelectorAll('.play-btn').forEach(btn => {
+                        btn.innerHTML = '<i class="bi bi-play-fill"></i>';
+                    });
+                    
+                    audio.play();
+                    playBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+                } else {
+                    audio.pause();
+                    playBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+                }
+            });
+            
+            // Update progress bar
+            audio.addEventListener('timeupdate', () => {
+                const progress = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.width = `${progress}%`;
+                
+                // Update time display
+                currentTime.textContent = formatTime(audio.currentTime);
+                if (!isNaN(audio.duration)) {
+                    duration.textContent = formatTime(audio.duration);
+                }
+            });
+            
+            // Click on progress bar to seek
+            const progressContainer = player.querySelector('.music-progress');
+            progressContainer.addEventListener('click', (e) => {
+                const width = progressContainer.clientWidth;
+                const clickX = e.offsetX;
+                const duration = audio.duration;
+                audio.currentTime = (clickX / width) * duration;
+            });
+            
+            // When song ends
+            audio.addEventListener('ended', () => {
+                playBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+                progressBar.style.width = '0%';
+                currentTime.textContent = '0:00';
+            });
+            
+            // Previous/Next buttons
+            const prevBtn = player.querySelector('.prev-btn');
+            const nextBtn = player.querySelector('.next-btn');
+            const playerIndex = parseInt(player.getAttribute('data-index'));
+            
+            prevBtn.addEventListener('click', () => {
+                const prevIndex = (playerIndex - 1 + songs.length) % songs.length;
+                playSong(prevIndex);
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                const nextIndex = (playerIndex + 1) % songs.length;
+                playSong(nextIndex);
+            });
+        });
+    }
+    
+    // Helper function to play a specific song
+    function playSong(index) {
+        const player = document.querySelector(`.music-player[data-index="${index}"]`);
+        const audio = player.querySelector('.audio-player');
+        const playBtn = player.querySelector('.play-btn');
+        
+        // Pause all players
+        document.querySelectorAll('.audio-player').forEach(a => a.pause());
+        // Reset all play buttons
+        document.querySelectorAll('.play-btn').forEach(btn => {
+            btn.innerHTML = '<i class="bi bi-play-fill"></i>';
+        });
+        
+        // Play the selected song
+        audio.currentTime = 0;
+        audio.play();
+        playBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+    }
+    
+    // Helper function to format time (seconds to MM:SS)
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    // Initialize the music players when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        generateMusicPlayers();
+        setupMusicControls();
+    });
+
+        // Initialize music players with the data
+        function initializeMusicPlayers() {
+            const musicPlayers = document.querySelectorAll('.music-player');
+            
+            musicPlayers.forEach((player, index) => {
+                if (index < spiritualSongs.length) {
+                    const song = spiritualSongs[index];
+                    const audioPlayer = player.querySelector('.audio-player');
+                    const musicTitle = player.querySelector('.music-title');
+                    const musicArtist = player.querySelector('.music-artist');
+                    const musicCover = player.querySelector('.music-cover');
+                    
+                    // Set song info
+                    musicTitle.textContent = song.title;
+                    musicArtist.textContent = song.artist;
+                    musicCover.src = song.cover;
+                    audioPlayer.src = song.url;
+                    
+                    // Initialize progress bar and time display
+                    audioPlayer.addEventListener('loadedmetadata', function() {
+                        const duration = formatTime(audioPlayer.duration);
+                        player.querySelectorAll('.music-time span')[1].textContent = duration;
+                    });
+                }
+            });
+        }
+
+        // Format time for music player (mm:ss)
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Update active nav link
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Update mobile bottom nav active link
+                if (window.innerWidth < 992) {
+                    document.querySelectorAll('.bottom-nav .nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    const iconMap = {
+                        '#dashboard': '.bi-house',
+                        '#gallery': '.bi-image',
+                        '#favorites': '.bi-heart',
+                        '#adventure': '.bi-map',
+                        '#settings': '.bi-gear'
+                    };
+                    
+                    for (const [hash, iconClass] of Object.entries(iconMap)) {
+                        if (this.getAttribute('href') === hash) {
+                            document.querySelector(`.bottom-nav a[href="${hash}"]`).classList.add('active');
+                            break;
+                        }
+                    }
+                }
+            });
+        });
+
+        // Dark Mode Toggle - Default to dark mode
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        if (darkModeToggle) {
+            // Set default to dark mode
+            document.body.dataset.bsTheme = 'dark';
+            darkModeToggle.checked = true;
+            
+            darkModeToggle.addEventListener('change', () => {
+                if (darkModeToggle.checked) {
+                    document.body.dataset.bsTheme = 'dark';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.body.dataset.bsTheme = 'light';
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        }
+
+        // Theme Color Change
+        const themeColors = document.querySelectorAll('.theme-color');
+        themeColors.forEach(color => {
+            color.addEventListener('click', function(e) {
+                e.preventDefault();
+                themeColors.forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                
+                const colorName = this.getAttribute('data-color');
+                document.documentElement.style.setProperty('--neon-primary', `var(--bs-${colorName})`);
+                
+                // Update profile image border
+                document.querySelectorAll('.profile-img').forEach(img => {
+                    img.style.borderColor = `var(--bs-${colorName})`;
+                });
+            });
+        });
+
+        // Profile Image Upload
+        const profileUpload = document.getElementById('profileUpload');
+        if (profileUpload) {
+            profileUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.querySelectorAll('.profile-img').forEach(img => {
+                            img.src = e.target.result;
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        // Image Modal
+        const imageModal = document.getElementById('imageModal');
+        if (imageModal) {
+            imageModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const imgSrc = button.getAttribute('data-img');
+                const modalImage = imageModal.querySelector('#modalImage');
+                modalImage.src = imgSrc;
+                modalImage.alt = button.getAttribute('alt');
+            });
+        }
+
+        // Video Modal
+        const videoModal = document.getElementById('videoModal');
+        if (videoModal) {
+            videoModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const videoSrc = button.getAttribute('data-video');
+                const modalVideo = videoModal.querySelector('#modalVideo');
+                modalVideo.src = videoSrc;
+            });
+            
+            videoModal.addEventListener('hidden.bs.modal', function() {
+                const modalVideo = videoModal.querySelector('#modalVideo');
+                modalVideo.src = '';
+            });
+        }
+
+        // Set active tab on page load based on hash
+        window.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash;
+            if (hash) {
+                const tab = document.querySelector(`[href="${hash}"]`);
+                if (tab) {
+                    tab.click();
+                }
+            }
+            
+            // Animate timeline items sequentially
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 100}ms`;
+            });
+            
+            // Initialize music players
+            initializeMusicPlayers();
+        });
+
+        // Mobile bottom nav click handler
+        document.querySelectorAll('.bottom-nav .nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.bottom-nav .nav-link').forEach(l => {
+                    l.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // See All buttons functionality
+        document.querySelectorAll('.see-all-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const target = this.getAttribute('data-target');
+                document.querySelectorAll('.expanded-favorites').forEach(section => {
+                    section.style.display = 'none';
+                });
+                document.getElementById(target).style.display = 'block';
+                
+                // Scroll to the expanded section
+                document.getElementById(target).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Music player functionality
+        document.querySelectorAll('.play-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const playerContainer = this.closest('.music-player');
+                const audioPlayer = playerContainer.querySelector('.audio-player');
+                const icon = this.querySelector('i');
+                
+                // Pause all other players
+                document.querySelectorAll('.audio-player').forEach(player => {
+                    if (player !== audioPlayer) {
+                        player.pause();
+                        const otherIcon = player.closest('.music-player').querySelector('.play-btn i');
+                        otherIcon.classList.remove('bi-pause-fill');
+                        otherIcon.classList.add('bi-play-fill');
+                    }
+                });
+                
+                if (audioPlayer.paused) {
+                    audioPlayer.play();
+                    icon.classList.remove('bi-play-fill');
+                    icon.classList.add('bi-pause-fill');
+                    
+                    // Update progress bar
+                    audioPlayer.addEventListener('timeupdate', function() {
+                        const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                        playerContainer.querySelector('.music-progress-bar').style.width = `${progress}%`;
+                        
+                        // Update time display
+                        const currentTime = formatTime(audioPlayer.currentTime);
+                        const timeElements = playerContainer.querySelectorAll('.music-time span');
+                        timeElements[0].textContent = currentTime;
+                    });
+                } else {
+                    audioPlayer.pause();
+                    icon.classList.remove('bi-pause-fill');
+                    icon.classList.add('bi-play-fill');
+                }
+            });
+        });
+
+        // Show toast notification
+        function showToast(message, type) {
+            const toast = document.getElementById('toastNotification');
+            toast.textContent = message;
+            toast.className = 'toast-notification';
+            toast.classList.add(type);
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // PIN Protection for Settings
+        const pinModal = document.getElementById('pinModal');
+        const pinContainer = document.getElementById('pinContainer');
+        const pinDigits = document.querySelectorAll('.pin-digit');
+        const pinSubmit = document.getElementById('pinSubmit');
+        const pinError = document.querySelector('.pin-error');
+        const pinSuccess = document.querySelector('.pin-success');
+        const settingsContent = document.getElementById('settingsContent');
+        const settingsLocked = document.getElementById('settingsLocked');
+        const unlockSettingsBtn = document.getElementById('unlockSettingsBtn');
+        const correctPIN = '123456';
+        let currentPin = '';
+
+        // Settings link click handler
+        document.querySelectorAll('.settings-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                showPinModal();
+            });
+        });
+
+        // Unlock settings button
+        unlockSettingsBtn.addEventListener('click', function() {
+            showPinModal();
+        });
+
+        function showPinModal() {
+            pinModal.style.display = 'flex';
+            setTimeout(() => {
+                pinContainer.classList.add('show');
+            }, 10);
+            currentPin = '';
+            pinDigits.forEach(digit => digit.value = '');
+            pinError.style.display = 'none';
+            pinSuccess.style.display = 'none';
+            pinDigits[0].focus();
+        }
+
+        function hidePinModal() {
+            pinContainer.classList.remove('show');
+            setTimeout(() => {
+                pinModal.style.display = 'none';
+            }, 300);
+        }
+
+        // PIN digit input handling
+        pinDigits.forEach((digit, index) => {
+            digit.addEventListener('input', function() {
+                if (this.value.length === 1) {
+                    currentPin += this.value;
+                    if (index < pinDigits.length - 1) {
+                        pinDigits[index + 1].focus();
+                    }
+                }
+            });
+            
+            digit.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
+                    pinDigits[index - 1].focus();
+                    currentPin = currentPin.slice(0, -1);
+                }
+            });
+        });
+
+        // PIN submission
+        pinSubmit.addEventListener('click', function() {
+    if (currentPin.length === 6) {
+        if (currentPin === correctPIN) {
+            pinError.style.display = 'none';
+            pinSuccess.style.display = 'block';
+            
+            // Show success toast
+            showToast('PIN correct! Access granted.', 'success');
+            
+            // Hide PIN modal and show settings
+            setTimeout(() => {
+                hidePinModal();
+                
+                // Explicitly set display properties
+                settingsContent.style.display = 'block';
+                settingsContent.classList.add('show');
+                settingsLocked.style.display = 'none';
+                
+                // Scroll to settings
+                window.location.hash = '#settings';
+                document.querySelector('#settings').scrollIntoView({ behavior: 'smooth' });
+            }, 1000);
+        } else {
+            pinError.style.display = 'block';
+            pinSuccess.style.display = 'none';
+            currentPin = '';
+            pinDigits.forEach(digit => digit.value = '');
+            pinDigits[0].focus();
+            
+            // Show error toast
+            showToast('Incorrect PIN. Please try again.', 'error');
+        }
+    }
+});
+
+        // Close PIN modal when clicking outside
+        pinModal.addEventListener('click', function(e) {
+            if (e.target === pinModal) {
+                hidePinModal();
+            }
+        });
+
+        // Initialize settings view
+        function initializeSettingsView() {
+            settingsContent.style.display = 'none';
+            settingsLocked.style.display = 'block';
+        }
+
+        // Initialize on page load
+        initializeSettingsView();
+    </script>
+</body>
+</html>
