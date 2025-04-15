@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Google Fonts for Neon Effect -->
@@ -193,7 +195,7 @@
             width: 100%;
             left: 0;
             z-index: 1000;
-            animation: fade-in 0.5s ease;
+            animation: fade-in 0.5s;
         }
 
         body[data-bs-theme="light"] .bottom-nav {
@@ -209,12 +211,45 @@
         .bottom-nav .nav-link {
             font-size: 1.5rem;
             color: var(--neon-light);
-            padding: 5px 15px;
+            padding: 5px 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
+            transition: all 0.3s;
+        }
+
+        /* Dashboard link styling */
+        .bottom-nav .nav-link[href="#dashboard"] {
+            font-size: 1.1rem;
+            padding: 5px 15px;
+            position: relative;
+            transform: translateY(-10px);
+            background-color: rgba(0, 255, 255, 0.1);
+            border-radius: 50%;
+            height: 60px;
+            width: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(0, 255, 255, 0.8); }
+            100% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); }
+        }
+
+        .bottom-nav .nav-link[href="#dashboard"] i {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .bottom-nav .nav-link[href="#dashboard"] span {
+            display: none;
         }
 
         body[data-bs-theme="light"] .bottom-nav .nav-link {
@@ -914,6 +949,215 @@ body[data-bs-theme="light"] .music-artist {
             color: #ff6b6b;
         }
 
+        /* Mining Section */
+        .mining-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .mining-display {
+            font-size: 2rem;
+            font-family: monospace;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--neon-primary);
+        }
+
+        .mining-btn {
+            font-size: 1.2rem;
+            padding: 10px 25px;
+            margin: 0 10px;
+        }
+
+        .mining-stats {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .mining-stat {
+            background-color: rgba(20, 20, 50, 0.7);
+            border: 1px solid var(--neon-primary);
+            border-radius: 8px;
+            padding: 15px;
+            width: 30%;
+            text-align: center;
+        }
+
+        .mining-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .mining-video.active {
+            opacity: 0.2;
+        }
+
+        /* Email Form */
+        .email-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(20, 20, 50, 0.7);
+            border-radius: 10px;
+            border: 1px solid var(--neon-primary);
+        }
+
+        body[data-bs-theme="light"] .email-form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.125);
+        }
+
+        .email-form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--neon-primary);
+        }
+
+        /* Login and Register Section */
+        .auth-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .auth-btn {
+            background-color: rgba(20, 20, 50, 0.7);
+            border: 1px solid var(--neon-primary);
+            color: var(--neon-light);
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .auth-btn:hover {
+            background-color: var(--neon-primary);
+            color: var(--neon-dark);
+            box-shadow: var(--neon-glow);
+        }
+
+        .auth-modal .modal-content {
+            background-color: rgba(20, 20, 50, 0.95);
+            border: 1px solid var(--neon-primary);
+            color: var(--neon-light);
+        }
+
+        .auth-modal .modal-header {
+            border-bottom: 1px solid var(--neon-primary);
+        }
+
+        .auth-modal .modal-footer {
+            border-top: 1px solid var(--neon-primary);
+        }
+
+        .auth-form .form-control {
+            background-color: rgba(10, 10, 32, 0.7);
+            border: 1px solid var(--neon-primary);
+            color: var(--neon-light);
+        }
+
+        .auth-form .form-control:focus {
+            background-color: rgba(10, 10, 32, 0.9);
+            border-color: var(--neon-secondary);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .auth-tabs .nav-link {
+            color: var(--neon-light);
+            background-color: transparent;
+            border: none;
+        }
+
+        .auth-tabs .nav-link.active {
+            color: var(--neon-primary);
+            background-color: transparent;
+        }
+
+        /* Lyrics Modal */
+        .lyrics-modal .modal-content {
+            background-color: rgba(20, 20, 50, 0.95);
+            border: 1px solid var(--neon-primary);
+            color: var(--neon-light);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .lyrics-modal .modal-header {
+            border-bottom: 1px solid var(--neon-primary);
+        }
+
+        .lyrics-modal .modal-body {
+            white-space: pre-line;
+            line-height: 1.6;
+        }
+
+        .lyrics-btn {
+            background-color: transparent;
+            border: none;
+            color: var(--neon-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lyrics-btn:hover {
+            color: var(--neon-secondary);
+            transform: scale(1.1);
+        }
+
+        /* User Profile Section */
+        .user-profile {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(20, 20, 50, 0.7);
+            border: 1px solid var(--neon-primary);
+            border-radius: 5px;
+            padding: 5px 10px;
+            color: var(--neon-light);
+        }
+
+        .user-profile img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .user-profile .user-name {
+            font-size: 0.9rem;
+            margin-right: 5px;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            color: var(--neon-light);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .logout-btn:hover {
+            color: var(--neon-primary);
+        }
+
         @media (max-width: 991px) {
             body {
                 padding-left: 0;
@@ -944,6 +1188,33 @@ body[data-bs-theme="light"] .music-artist {
             .bottom-nav {
                 padding: 15px 0;
             }
+
+            .mining-stat {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .mining-stats {
+                flex-direction: column;
+            }
+
+            /* Adjust auth container for mobile */
+            .auth-container {
+                top: 10px;
+                right: 10px;
+            }
+
+            .auth-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            .user-profile {
+                padding: 5px;
+            }
+            .user-name {
+                display: none;
+            }
         }
 
         /* Custom Scrollbar */
@@ -970,6 +1241,32 @@ body[data-bs-theme="light"] .music-artist {
     </style>
 </head>
 <body data-bs-theme="dark">
+    <!-- Mining Video Background -->
+    <video class="mining-video" id="miningVideo" loop muted>
+        <source src="asset/video/mining.mp4" type="video/mp4">
+    </video>
+
+    <!-- Login/Register Buttons -->
+    <div class="auth-container" id="authButtons">
+        <button class="auth-btn me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+            <i class="bi bi-box-arrow-in-right me-1"></i>Login
+        </button>
+        <button class="auth-btn" data-bs-toggle="modal" data-bs-target="#registerModal">
+            <i class="bi bi-person-plus me-1"></i>Register
+        </button>
+    </div>
+
+    <!-- User Profile (Shown after login) -->
+    <div class="auth-container" id="userProfile" style="display: none;">
+        <div class="user-profile">
+            <img id="userPhoto" src="" alt="User Photo">
+            <span class="user-name" id="userName"></span>
+            <button class="logout-btn" id="logoutBtn" title="Logout">
+                <i class="bi bi-box-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- Sidebar (Desktop) -->
     <div class="sidebar d-none d-lg-block">
         <div class="text-center py-4">
@@ -980,8 +1277,8 @@ body[data-bs-theme="light"] .music-artist {
             <div class="social-icons mb-4">
                 <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
                 <a href="#" class="me-3"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
-                <a href="#" class=""><i class="bi bi-envelope"></i></a>
+                <a href="#" class="me-3"><i class="bi bi-whatsapp"></i></a>
+                <a href="#" class="email-link"><i class="bi bi-envelope"></i></a>
             </div>
         </div>
         <ul class="nav flex-column px-3">
@@ -1034,8 +1331,8 @@ body[data-bs-theme="light"] .music-artist {
                 <div class="social-icons mb-4">
                     <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
                     <a href="#" class="me-3"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
-                    <a href="sidorusarmansyukurwaruw99@gmail.com" class=""><i class="bi bi-envelope"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-whatsapp"></i></a>
+                    <a href="#" class="email-link"><i class="bi bi-envelope"></i></a>
                 </div>
             </div>
             
@@ -1061,10 +1358,6 @@ body[data-bs-theme="light"] .music-artist {
 
     <!-- Bottom Navbar (Mobile) -->
     <nav class="bottom-nav d-lg-none">
-        <a href="#dashboard" class="nav-link active">
-            <i class="bi bi-grid"></i>
-            <span>Dashboard</span>
-        </a>
         <a href="#gallery" class="nav-link">
             <i class="bi bi-image"></i>
             <span>Gallery</span>
@@ -1072,6 +1365,9 @@ body[data-bs-theme="light"] .music-artist {
         <a href="#favorites" class="nav-link">
             <i class="bi bi-heart"></i>
             <span>Favorites</span>
+        </a>
+        <a href="#dashboard" class="nav-link active">
+            <i class="bi bi-grid"></i>
         </a>
         <a href="#adventure" class="nav-link">
             <i class="bi bi-map"></i>
@@ -1135,9 +1431,35 @@ body[data-bs-theme="light"] .music-artist {
                 <div class="col-lg-6" data-aos="fade-right">
                     <div class="card p-4 h-100">
                         <h3 class="mb-4 neon-text">About Me</h3>
+                        <div class="text-center mb-4">
+                            <img src="image/profil.png" alt="Profile" class="profile-img rounded-circle mb-3">
+                            <h4 class="neon-text">CR7</h4>
+                            <p class="text-muted">Footballer | Web Developer</p>
+                        </div>
                         <p>Halo! Saya seorang penggemar sepak bola yang bersemangat dengan pengetahuan mendalam tentang strategi dan teknik permainan modern. Saya memiliki pengalaman lebih dari 5 tahun dalam menganalisis pertandingan dan taktik pemain.
                             Ketika saya tidak menonton pertandingan, Anda bisa menemukan saya menjelajahi lapangan sepak bola, mencoba berbagai formasi, atau menganalisis pemain favorit saya. Saya percaya dalam terus belajar dan meningkatkan kemampuan analisis sepak bola.
                             Tujuan saya adalah memahami dan mengapresiasi keindahan permainan sepak bola yang tidak hanya menarik secara visual tetapi juga strategis dan menghibur.</p>
+                        <div class="mt-3">
+                            <h5 class="neon-text">Skills</h5>
+                            <div class="mb-2">
+                                <span>HTML/CSS</span>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <span>JavaScript</span>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <span>Football Analysis</span>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
@@ -1157,12 +1479,43 @@ body[data-bs-theme="light"] .music-artist {
                             </div>
                             <p>Added new favorite restaurant to my list</p>
                         </div>
-                        <div class="activity-item">
+                        <div class="activity-item mb-3">
                             <div class="d-flex justify-content-between">
                                 <strong>Completed project</strong>
                                 <small class="text-muted">3 days ago</small>
                             </div>
                             <p>Finished working on the new portfolio website</p>
+                        </div>
+                        <div class="activity-item">
+                            <div class="d-flex justify-content-between">
+                                <strong>Mining Started</strong>
+                                <small class="text-muted">5 days ago</small>
+                            </div>
+                            <p>New mining session with 5000 hashes processed</p>
+                        </div>
+
+                        <!-- Mining Section -->
+                        <div class="mining-container mt-4">
+                            <h3 class="neon-text">Mining Simulator</h3>
+                            <div class="mining-display" id="miningDisplay">0</div>
+                            <div>
+                                <button class="btn btn-primary mining-btn" id="startMiningBtn">Start Mining</button>
+                                <button class="btn btn-danger mining-btn" id="stopMiningBtn" disabled>Stop Mining</button>
+                            </div>
+                            <div class="mining-stats">
+                                <div class="mining-stat">
+                                    <h5>Hashes</h5>
+                                    <p id="hashCount">0</p>
+                                </div>
+                                <div class="mining-stat">
+                                    <h5>Speed</h5>
+                                    <p id="hashSpeed">0 H/s</p>
+                                </div>
+                                <div class="mining-stat">
+                                    <h5>Status</h5>
+                                    <p id="miningStatus">Idle</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1257,7 +1610,7 @@ body[data-bs-theme="light"] .music-artist {
                 <div class="col-md-4 mb-4" data-aos="flip-left">
                     <div class="favorite-card" style="height: 300px;">
                         <div class="favorite-card-front">
-                            <img src="https://scontent.fkno9-1.fna.fbcdn.net/o1/v/t0/f2/m340/AQMBPqFi0YxTz51bLZrntq9o3xu1GQ-bhU31S4vUk1iLsVryili3hmUc6wxRyPYDQX_nKw78eaoU_Rmdtm9zF3JJzkTE2UnsnlWntmcegBuQ86OVxOVgE3vzUWTDTXewtJgKC0WqwKgr-ghQFJrnaPScj6pQ.jpeg?stp=s600x600&_nc_ht=scontent.fkno9-1.fna.fbcdn.net&_nc_gid=BZ4mAxfzdaUelQHz2ACLug&_nc_cat=109&_nc_oc=AdkLuAJpU4XC3rauvhAAX6cMMHVZYn_pPBqoN8RtiUbwKf-s2znfaNqVxATcgsPQImU&ccb=9-4&oh=00_AfHNgCNTlbCkdyexqmmEmDeAZm74ky_zAjRKt7W_QSUtkQ&oe=67FBCC18&_nc_sid=5b3566" alt="Pasta" class="img-fluid rounded-top">
+                            <img src="asset/makanan/foof.png" alt="Pasta" class="img-fluid rounded-top">
                             <div class="p-3">
                                 <h5 class="neon-text">Makanan</h5>
                                 <p>Click to see description</p>
@@ -1361,15 +1714,14 @@ body[data-bs-theme="light"] .music-artist {
             </div>
             
             <!-- Expanded Music Favorites -->
-<div id="music-expanded" class="expanded-favorites">
-    <h3 class="mb-4 neon-text">My Favorite Music</h3>
-    
-    <!-- Music Players will be dynamically generated here -->
-    <div id="music-container">
-        <!-- Music players will be added here by JavaScript -->
-    </div>
-</div>
-
+            <div id="music-expanded" class="expanded-favorites">
+                <h3 class="mb-4 neon-text">My Favorite Music</h3>
+                
+                <!-- Music Players will be dynamically generated here -->
+                <div id="music-container">
+                    <!-- Music players will be added here by JavaScript -->
+                </div>
+            </div>
                        
             <!-- Expanded Hobbies Favorites -->
             <div id="hobbies-expanded" class="expanded-favorites">
@@ -1377,7 +1729,7 @@ body[data-bs-theme="light"] .music-artist {
                 <div class="row">
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
-                            <img src="https://scontent.fkno9-1.fna.fbcdn.net/o1/v/t0/f2/m340/AQOcQ-_AzOxOqA5MKupRVtjDHDp4coZ1mdP68JCxuAra50zP3MAy93NxPwq8Rq0_lZlzKep4wbfWQBq4x6_g1rOtRPfI6etUNiLWyNu6gs7hpvGQMvLpcdBCVTcVk1a43K7mYYVWw6aDIzcnxDMhtUMX0OEXZA.jpeg?stp=s600x600&_nc_ht=scontent.fkno9-1.fna.fbcdn.net&_nc_gid=hmA_D6G4fLA4wq87SaDyHQ&_nc_cat=103&_nc_oc=AdlBncOZYq8ZfwEBu6juUoPLB_UjhvNhYK5ltRCnYOsLDUMXqywINQTAW9lBCe3NRoA&ccb=9-4&oh=00_AfE7OAzzJM4Tig_yKRaoaPdacQgPjMfQzD_IjemLXRNZYg&oe=67FBD4DA&_nc_sid=5b3566" class="card-img-top" alt="Hiking">
+                            <img src="asset/hobby/gunung.png" class="card-img-top" alt="Hiking">
                             <div class="card-body">
                                 <h5 class="card-title neon-text">Mountain Hiking</h5>
                                 <p class="card-text">Menjelajahi jalur alam dan puncak gunung adalah cara favorit saya untuk tetap aktif dan terhubung dengan alam.</p>
@@ -1387,7 +1739,7 @@ body[data-bs-theme="light"] .music-artist {
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
-                            <img src="https://scontent.fkno9-1.fna.fbcdn.net/o1/v/t0/f2/m340/AQMnyVJMkuqrZKsR_PrYXGQ1OGdE70g70tpBR_Vo1v2zr1ak6jYcRmQldlQ-O8RlX9JGlf5PP_B2TexmCxKTsxEbpQCalUK0kj5VUEvSdAtNRyY-mSQeMTpH6QV0YSygU6jj_4gHXvVuKc-pk0XfFMV3CQFrGw.jpeg?stp=s600x600&_nc_ht=scontent.fkno9-1.fna.fbcdn.net&_nc_gid=hmA_D6G4fLA4wq87SaDyHQ&_nc_cat=101&_nc_oc=AdnlwP3hAdx2yziQHs5Uqo2ufUkkajjY8WdwJl4GtKRBwCyYmPUTZh7CVdXUclJrtTQ&ccb=9-4&oh=00_AfEpYPTPDbJNbGWA-rSFleBAvZ0Oal_pBINtetUqO-DBLA&oe=67FBC130&_nc_sid=5b3566" class="card-img-top" alt="Basketball">
+                            <img src="asset/hobby/basket.png" class="card-img-top" alt="Basketball">
                             <div class="card-body">
                                 <h5 class="card-title neon-text">Basketball</h5>
                                 <p class="card-text">Bermain basket sejak SMA - bagus untuk kebugaran dan kerja sama tim.</p>
@@ -1397,7 +1749,7 @@ body[data-bs-theme="light"] .music-artist {
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
-                            <img src="https://scontent.fkno9-1.fna.fbcdn.net/o1/v/t0/f2/m340/AQO6oNLkvVYHC__ebKWzkiVj5xwHxEJ3wErObsCbxvujA1Z0YOS8IPuBRvgrJhfJF5iY0RHbG3DCQOQt5d2XsHQQv4M4-kOFAZZ2Zfi0SYDM2uTfL1BX1kRJhiDCGHoh6kzi4L2sDyys6_ant6hX7nPAPxiflw.jpeg?stp=s600x600&_nc_ht=scontent.fkno9-1.fna.fbcdn.net&_nc_gid=hmA_D6G4fLA4wq87SaDyHQ&_nc_cat=107&_nc_oc=AdlpCkhbuWV_LTwC4tLRS4thgR_PHINqnpR7LnVIHeTswuB0sCIOdhQ09NNPpOyw-mU&ccb=9-4&oh=00_AfHw6drk9NIvId9pItHn-t7subfwmwJpS_3LjM1PA4g_8w&oe=67FBE92E&_nc_sid=5b3566" class="card-img-top" alt="Badminton">
+                            <img src="asset/hobby/bulu.png" class="card-img-top" alt="Badminton">
                             <div class="card-body">
                                 <h5 class="card-title neon-text">Badminton</h5>
                                 <p class="card-text">Olahraga raket berkecepatan tinggi yang meningkatkan refleks dan koordinasi.</p>
@@ -1407,7 +1759,7 @@ body[data-bs-theme="light"] .music-artist {
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
-                            <img src="https://scontent.fkno9-1.fna.fbcdn.net/o1/v/t0/f2/m340/AQOupqJwTGYvBvXNMlX-fJTdHjxxNL9FM_pBcxa_3rau7XjFaGE93U0NOEtMSn7ir-uH5yHnw1bnurEzAUFTRhOUO8zye4f6pxdsYgC02uQWi0g8YaV4gSgePsVYkCOoHvfOSwFjgAGxmrLHN593XDsB6F2i.jpeg?stp=s600x600&_nc_ht=scontent.fkno9-1.fna.fbcdn.net&_nc_gid=hmA_D6G4fLA4wq87SaDyHQ&_nc_cat=107&_nc_oc=AdnsT8SlTFREBE-KynRFGdG2C2Bbo3nIwKC0B4rPg8JrlybNeUH8VONLHEyTBNBq-b0&ccb=9-4&oh=00_AfESiBXz53eaBMRruMj4eHXsGni6i-0BdQE9j7vOPJVQWQ&oe=67FBC772&_nc_sid=5b3566" class="card-img-top" alt="Table Tennis">
+                            <img src="asset/hobby/tenis.png" class="card-img-top" alt="Table Tennis">
                             <div class="card-body">
                                 <h5 class="card-title neon-text">Table Tennis</h5>
                                 <p class="card-text">Permainan cepat dan strategis yang sempurna untuk dimainkan di dalam ruangan.</p>
@@ -1417,7 +1769,7 @@ body[data-bs-theme="light"] .music-artist {
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
-                            <img src="https://scontent.fkno9-1.fna.fbcdn.net/o1/v/t0/f2/m340/AQM9lJaC_NSKmnzxv9XQO3nhpleitdW8TEHQ_Ltj56j-Ka9Ryw977zeV5F_LFYGo6NswF-AupQ3Xhjsb7-8uJ1DrTlF_t5uRw8r2sEFuiIjdFpR7T0PbKD8ErJ5I2jxLbS3hVOTPRQWnXIJIypOCXxHH7zjN2Q.jpeg?stp=s600x600&_nc_ht=scontent.fkno9-1.fna.fbcdn.net&_nc_gid=1yFZ02dXx0waSjB-Yw56cg&_nc_cat=106&_nc_oc=Adni59BsVUSklYMJRBq3OqK6GL_VhRJBOrZ45el_QhPmz8NFrEbodKtLXejntdRTAUc&ccb=9-4&oh=00_AfFj3SsjloMG45duATffsBP-13qMzg1XNEAJFRD-wLzx-A&oe=67FBE131&_nc_sid=5b3566" class="card-img-top" alt="Volleyball">
+                            <img src="asset/hobby/voly.png" class="card-img-top" alt="Volleyball">
                             <div class="card-body">
                                 <h5 class="card-title neon-text">Volleyball</h5>
                                 <p class="card-text">Olahraga tim yang menggabungkan atletis dan strategi di pantai atau lapangan.</p>
@@ -1444,7 +1796,7 @@ body[data-bs-theme="light"] .music-artist {
                 <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
                     <div class="timeline-content">
                         <img src="asset/foto/tokyo.png" alt="Tokyo" class="img-fluid rounded">
-                        <h5 class="neon-text">Tokyo Exploration</h5>
+                        <h5 class="neon-text">Tokyo Adventure</h5>
                         <p class="text-muted">April 2022</p>
                         <p>Menikmati perpaduan budaya tradisional dan futuristik di Tokyo. Mengunjungi Penyeberangan Shibuya, Kuil Asakusa, dan menikmati sushi autentik.</p>
                     </div>
@@ -1459,7 +1811,7 @@ body[data-bs-theme="light"] .music-artist {
                 </div>
             </div>
         </section>
-
+    
         <!-- Settings -->
         <section id="settings" class="container py-5">
             <h1 class="mb-4 neon-text" data-aos="fade-up">Settings</h1>
@@ -1523,6 +1875,35 @@ body[data-bs-theme="light"] .music-artist {
                 <button class="btn btn-primary" id="unlockSettingsBtn">Enter PIN</button>
             </div>
         </section>
+    
+        <!-- Email Form Modal -->
+        <div class="modal fade" id="emailModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title neon-text">Send Me a Message</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="emailForm">
+                            <div class="mb-3">
+                                <label for="senderName" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="senderName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="senderEmail" class="form-label">Your Email</label>
+                                <input type="email" class="form-control" id="senderEmail" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="messageContent" class="form-label">Message</label>
+                                <textarea class="form-control" id="messageContent" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- Image Modal -->
@@ -1554,7 +1935,7 @@ body[data-bs-theme="light"] .music-artist {
             </div>
         </div>
     </div>
-
+    
     <!-- PIN Modal -->
     <div class="pin-modal" id="pinModal">
         <div class="pin-container" id="pinContainer">
@@ -1575,93 +1956,367 @@ body[data-bs-theme="light"] .music-artist {
             </div>
         </div>
     </div>
-
+    
     <!-- Notification Toast -->
     <div class="toast-notification" id="toastNotification"></div>
-
+    
+    <!-- Login Modal -->
+    <div class="modal fade auth-modal" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title neon-text">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs auth-tabs mb-4">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#loginFormTab">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#registerFormTab">Register</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="loginFormTab">
+                            <form class="auth-form" id="loginForm">
+                                <div class="mb-3">
+                                    <label for="loginEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="loginEmail" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="loginPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="loginPassword" required>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                                    </div>
+                                    <a href="#" class="text-decoration-none">Forgot password?</a>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary">Login</button>
+                                    <button type="button" class="btn btn-danger" id="googleLoginBtn">
+                                        <i class="bi bi-google me-2"></i>Login with Google
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="registerFormTab">
+                            <form class="auth-form" id="registerForm">
+                                <div class="mb-3">
+                                    <label for="registerName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="registerName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="registerEmail" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="registerPassword" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerConfirmPassword" class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" id="registerConfirmPassword" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Register</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Register Modal -->
+    <div class="modal fade auth-modal" id="registerModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title neon-text">Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="auth-form" id="registerForm2">
+                        <div class="mb-3">
+                            <label for="registerName2" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="registerName2" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail2" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="registerEmail2" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword2" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="registerPassword2" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerConfirmPassword2" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="registerConfirmPassword2" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <p class="mb-0">Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lyrics Modal -->
+    <div class="modal fade lyrics-modal" id="lyricsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title neon-text" id="lyricsTitle">Song Lyrics</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="lyricsContent">
+                    Loading lyrics...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <!-- Custom JS -->
     <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAaIpoN0E5ZiwpzcS9BXEhX11EM7E8ppvg",
+            authDomain: "personal-7c7a3.firebaseapp.com",
+            projectId: "personal-7c7a3",
+            storageBucket: "personal-7c7a3.firebasestorage.app",
+            messagingSenderId: "946750070678",
+            appId: "1:946750070678:web:f010d4e3bce0b6cc1807b7",
+            measurementId: "G-Y0V851YY2S"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
         // Initialize AOS
         AOS.init({
             duration: 800,
             once: true
         });
+    
+        // Initialize EmailJS
+        (function() {
+            emailjs.init('n5sicBoeZSo_nJg');
+        })();
+    
+       // Music data with lyrics
+const songs = [
+    { 
+        title: 'Somebody Pleasure', 
+        artist: 'Aziz Hedra', 
+        cover: 'image/Aziz Hedra.png', 
+        url: 'song/Aziz Hedra - Somebodys Pleasure (Official Lyric Video).mp3',
+        lyrics: `[Verse 1]
+I see you standing there
+Looking so unaware
+Of how you light up the room
+With just one smile, you do
 
-        // Music data
-    const songs = [
-        { 
-            title: 'Somebody Pleasure', 
-            artist: 'Aziz Hedra', 
-            cover: 'image/Aziz Hedra.png', 
-            url: 'song/Aziz Hedra - Somebodys Pleasure (Official Lyric Video).mp3' 
-        },
-        { 
-            title: 'Heather', 
-            artist: 'Conan Ray', 
-            cover: 'image/conangray.png', 
-            url: 'song/Conan Gray - Heather (Lyric Video).mp3' 
-        },
-        { 
-            title: 'Dive', 
-            artist: 'Bless Trio', 
-            cover: 'image/Ed Sheeran.png', 
-            url: 'song/DIVE - Ed Sheeran (LyricsVietsub).mp3' 
-        },
-        { 
-            title: 'The Last Night Day', 
-            artist: 'MLTR', 
-            cover: 'image/MLTR.png', 
-            url: 'song/Green Day - Last Night On Earth (cover).mp3' 
-        },
-        { 
-            title: 'Heres Yours Perfect', 
-            artist: 'Jamie Miller', 
-            cover: 'image/Jamie Miller.png', 
-            url: 'song/Jamie Miller - Heres Your Perfect (Official Music Video).mp3' 
-        },
-        { 
-            title: 'To The Bone', 
-            artist: 'Pamungkas', 
-            cover: 'image/pamungkas.png', 
-            url: 'song/Pamungkas - To The Bone.mp3' 
-        },
-        { 
-            title: 'God Speed', 
-            artist: 'Stormzy', 
-            cover: 'image/stromy.png', 
-            url: 'song/Stormzy - Godspeed  Frank Ocean Cover.mp3' 
-        },
-        { 
-            title: 'Blue', 
-            artist: 'Yung Kai', 
-            cover: 'image/blue.png', 
-            url: 'song/yung kai - blue (Official Music Video).mp3' 
-        },
-        { 
-            title: 'The Only Exception', 
-            artist: 'Paramore', 
-            cover: 'image/Paramore.png', 
-            url: 'song/Paramore The Only Exception [OFFICIAL VIDEO].mp3' 
-        },
-        { 
-            title: 'Kutunggu Kau Putus', 
-            artist: 'Sheryl Sheinafia', 
-            cover: 'image/Sheryl Sheinafia.png', 
-            url: 'song/Sheryl Sheinafia Feat. Ariel NOAH - Kutunggu Kau Putus (Official Music Video).mp3' 
-        },
-        { 
-            title: 'Walking Back Home', 
-            artist: 'Vira Talisa Dharmawan', 
-            cover: 'image/viratalisa.png', 
-            url: 'song/Vira Talisa Dharmawan - Walking Back Home.mp3' 
-        }
-    ];
+[Chorus]
+You're somebody's pleasure
+Somebody's treasure
+Somebody's reason to smile
+But I'm just a stranger
+Passing through danger
+Wishing you'd stay for a while`
+    }, 
+    { 
+        title: 'Heather', 
+        artist: 'Conan Ray', 
+        cover: 'image/conangray.png', 
+        url: 'song/Conan Gray - Heather (Lyric Video).mp3', 
+        lyrics: `[Verse 1]
+I still remember third of December
+Me in your sweater, you said it looked better
+On me than it did you
+Only if you knew how much I liked you
 
-    // Function to generate music players
+[Chorus]
+But I watch your eyes as she
+Walks by
+What a sight for sore eyes
+Brighter than a blue sky
+She's got you mesmerized
+While I die`
+    }, 
+    { 
+        title: 'Dive', 
+        artist: 'Bless Trio', 
+        cover: 'image/Ed Sheeran.png', 
+        url: 'song/DIVE - Ed Sheeran (LyricsVietsub).mp3', 
+        lyrics: `[Verse 1]
+Don't call me baby
+Unless you mean it
+Don't tell me you need me
+If you don't believe it
+
+[Chorus]
+So let me know the truth
+Before I dive right into you
+You're a mystery
+I have travelled the world
+And there's no other girl like you`
+    }, 
+    { 
+        title: 'The Last Night Day', 
+        artist: 'MLTR', 
+        cover: 'image/MLTR.png', 
+        url: 'song/Green Day - Last Night On Earth (cover).mp3', 
+        lyrics: `[Verse 1]
+Sending all my love to you
+You are the moonlight of my life every night
+Giving all my love to you
+My heart is beating for you in the night
+
+[Chorus]
+I'm here for you
+Don't you know
+Can't you feel it?
+You're the first, the last, my everything`
+    }, 
+    { 
+        title: 'Heres Yours Perfect', 
+        artist: 'Jamie Miller', 
+        cover: 'image/Jamie Miller.png', 
+        url: 'song/Jamie Miller - Heres Your Perfect (Official Music Video).mp3', 
+        lyrics: `[Verse 1]
+Here's your perfect
+Here's your perfect
+Here's your perfect, goodbye
+
+[Chorus]
+'Cause I'm not perfect
+No, I'm not perfect
+No, I'm not perfect
+Like you wanted me to be`
+    }, 
+    { 
+        title: 'To The Bone', 
+        artist: 'Pamungkas', 
+        cover: 'image/pamungkas.png', 
+        url: 'song/Pamungkas - To The Bone.mp3', 
+        lyrics: `[Verse 1]
+I don't wanna be the one who's always right
+I don't wanna be the one who's always wrong
+I just wanna be the one who's in your arms
+Where I belong
+
+[Chorus]
+Take me to the bone
+Hold me till I'm gone
+Love me till I'm numb
+Need you like the sun`
+    }, 
+    { 
+        title: 'God Speed', 
+        artist: 'Stormzy', 
+        cover: 'image/stromy.png', 
+        url: 'song/Stormzy - Godspeed Frank Ocean Cover.mp3', 
+        lyrics: `[Verse 1]
+Wish you godspeed, glory
+There will be mountains you won't move
+Still I'll always be there for you
+How I do
+
+[Chorus]
+I let go of my claim on you
+It's a free world
+You look down on where you came from sometimes
+But you'll have this place to call home always`
+    }, 
+    { 
+        title: 'Blue', 
+        artist: 'Yung Kai', 
+        cover: 'image/blue.png', 
+        url: 'song/yung kai - blue (Official Music Video).mp3', 
+        lyrics: `[Verse 1]
+I'm feeling blue
+Without you
+I'm feeling blue
+Without you
+
+[Chorus]
+All the lights are on
+But nobody's home
+I'm dancing with my shadow alone
+I'm feeling blue`
+    }, 
+    { 
+        title: 'The Only Exception', 
+        artist: 'Paramore', 
+        cover: 'image/Paramore.png', 
+        url: 'song/Paramore The Only Exception [OFFICIAL VIDEO].mp3', 
+        lyrics: `[Verse 1]
+When I was younger I saw my daddy cry
+And curse at the wind
+He broke his own heart and I watched
+As he tried to reassemble it
+
+[Chorus]
+You are the only exception
+You are the only exception
+You are the only exception
+You are the only exception`
+    }, 
+    { 
+        title: 'Kutunggu Kau Putus', 
+        artist: 'Sheryl Sheinafia', 
+        cover: 'image/Sheryl Sheinafia.png', 
+        url: 'song/Sheryl Sheinafia Feat. Ariel NOAH - Kutunggu Kau Putus (Official Music Video).mp3', 
+        lyrics: `[Verse 1]
+Ku tunggu kau putus dengan dia
+Aku tak peduli berapa lama
+Ku akan tetap di sini menanti
+Hingga kau sadari cintaku ini
+
+[Chorus]
+Ku tunggu kau putus dengan dia
+Walau ku tahu ini menyiksa
+Ku akan tetap setia menanti
+Hingga kau milikku sepenuhnya`
+    }, 
+    { 
+        title: 'Walking Back Home', 
+        artist: 'Vira Talisa Dharmawan', 
+        cover: 'image/viratalisa.png', 
+        url: 'song/Vira Talisa Dharmawan - Walking Back Home.mp3', 
+        lyrics: `[Verse 1]
+Walking back home
+Under the streetlights glow
+Thinking of you
+And all the things we've been through
+
+[Chorus]
+I'm walking back home
+But I'm not alone
+'Cause in my heart
+You're always there`
+    }
+];
+
+    // Function to generate music players with lyrics button
     function generateMusicPlayers() {
         const container = document.getElementById('music-container');
         
@@ -1687,6 +2342,9 @@ body[data-bs-theme="light"] .music-artist {
                                     <button class="music-btn prev-btn"><i class="bi bi-skip-backward-fill"></i></button>
                                     <button class="music-btn play-btn"><i class="bi bi-play-fill"></i></button>
                                     <button class="music-btn next-btn"><i class="bi bi-skip-forward-fill"></i></button>
+                                    <button class="music-btn lyrics-btn" data-song-index="${index}">
+                                        <i class="fa-thin fa-arrow-up-right-from-square"></i>
+                                    </button>
                                 </div>
                             </div>
                             <audio class="audio-player" src="${song.url}"></audio>
@@ -1773,6 +2431,26 @@ body[data-bs-theme="light"] .music-artist {
                 playSong(nextIndex);
             });
         });
+
+        // Lyrics button functionality
+        document.querySelectorAll('.lyrics-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const songIndex = this.getAttribute('data-song-index');
+                showLyrics(songIndex);
+            });
+        });
+    }
+    
+    // Function to show lyrics modal
+    function showLyrics(songIndex) {
+        const song = songs[songIndex];
+        const lyricsModal = new bootstrap.Modal(document.getElementById('lyricsModal'));
+        
+        document.getElementById('lyricsTitle').textContent = `${song.title} - ${song.artist}`;
+        document.getElementById('lyricsContent').textContent = song.lyrics;
+        
+        lyricsModal.show();
     }
     
     // Helper function to play a specific song
@@ -1807,357 +2485,290 @@ body[data-bs-theme="light"] .music-artist {
         setupMusicControls();
     });
 
-        // Initialize music players with the data
-        function initializeMusicPlayers() {
-            const musicPlayers = document.querySelectorAll('.music-player');
-            
-            musicPlayers.forEach((player, index) => {
-                if (index < spiritualSongs.length) {
-                    const song = spiritualSongs[index];
-                    const audioPlayer = player.querySelector('.audio-player');
-                    const musicTitle = player.querySelector('.music-title');
-                    const musicArtist = player.querySelector('.music-artist');
-                    const musicCover = player.querySelector('.music-cover');
-                    
-                    // Set song info
-                    musicTitle.textContent = song.title;
-                    musicArtist.textContent = song.artist;
-                    musicCover.src = song.cover;
-                    audioPlayer.src = song.url;
-                    
-                    // Initialize progress bar and time display
-                    audioPlayer.addEventListener('loadedmetadata', function() {
-                        const duration = formatTime(audioPlayer.duration);
-                        player.querySelectorAll('.music-time span')[1].textContent = duration;
-                    });
-                }
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
             });
-        }
-
-        // Format time for music player (mm:ss)
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-        }
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // Update active nav link
-                document.querySelectorAll('.nav-link').forEach(link => {
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            this.classList.add('active');
+            
+            // Update mobile bottom nav active link
+            if (window.innerWidth < 992) {
+                document.querySelectorAll('.bottom-nav .nav-link').forEach(link => {
                     link.classList.remove('active');
                 });
-                this.classList.add('active');
+                const iconMap = {
+                    '#dashboard': '.bi-grid',
+                    '#gallery': '.bi-image',
+                    '#favorites': '.bi-heart',
+                    '#adventure': '.bi-map',
+                    '#settings': '.bi-gear'
+                };
                 
-                // Update mobile bottom nav active link
-                if (window.innerWidth < 992) {
-                    document.querySelectorAll('.bottom-nav .nav-link').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    const iconMap = {
-                        '#dashboard': '.bi-house',
-                        '#gallery': '.bi-image',
-                        '#favorites': '.bi-heart',
-                        '#adventure': '.bi-map',
-                        '#settings': '.bi-gear'
-                    };
-                    
-                    for (const [hash, iconClass] of Object.entries(iconMap)) {
-                        if (this.getAttribute('href') === hash) {
-                            document.querySelector(`.bottom-nav a[href="${hash}"]`).classList.add('active');
-                            break;
-                        }
+                for (const [hash, iconClass] of Object.entries(iconMap)) {
+                    if (this.getAttribute('href') === hash) {
+                        document.querySelector(`.bottom-nav a[href="${hash}"]`).classList.add('active');
+                        break;
                     }
-                }
-            });
-        });
-
-        // Dark Mode Toggle - Default to dark mode
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        if (darkModeToggle) {
-            // Set default to dark mode
-            document.body.dataset.bsTheme = 'dark';
-            darkModeToggle.checked = true;
-            
-            darkModeToggle.addEventListener('change', () => {
-                if (darkModeToggle.checked) {
-                    document.body.dataset.bsTheme = 'dark';
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    document.body.dataset.bsTheme = 'light';
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-        }
-
-        // Theme Color Change
-        const themeColors = document.querySelectorAll('.theme-color');
-        themeColors.forEach(color => {
-            color.addEventListener('click', function(e) {
-                e.preventDefault();
-                themeColors.forEach(c => c.classList.remove('active'));
-                this.classList.add('active');
-                
-                const colorName = this.getAttribute('data-color');
-                document.documentElement.style.setProperty('--neon-primary', `var(--bs-${colorName})`);
-                
-                // Update profile image border
-                document.querySelectorAll('.profile-img').forEach(img => {
-                    img.style.borderColor = `var(--bs-${colorName})`;
-                });
-            });
-        });
-
-        // Profile Image Upload
-        const profileUpload = document.getElementById('profileUpload');
-        if (profileUpload) {
-            profileUpload.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        document.querySelectorAll('.profile-img').forEach(img => {
-                            img.src = e.target.result;
-                        });
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        }
-
-        // Image Modal
-        const imageModal = document.getElementById('imageModal');
-        if (imageModal) {
-            imageModal.addEventListener('show.bs.modal', function(event) {
-                const button = event.relatedTarget;
-                const imgSrc = button.getAttribute('data-img');
-                const modalImage = imageModal.querySelector('#modalImage');
-                modalImage.src = imgSrc;
-                modalImage.alt = button.getAttribute('alt');
-            });
-        }
-
-        // Video Modal
-        const videoModal = document.getElementById('videoModal');
-        if (videoModal) {
-            videoModal.addEventListener('show.bs.modal', function(event) {
-                const button = event.relatedTarget;
-                const videoSrc = button.getAttribute('data-video');
-                const modalVideo = videoModal.querySelector('#modalVideo');
-                modalVideo.src = videoSrc;
-            });
-            
-            videoModal.addEventListener('hidden.bs.modal', function() {
-                const modalVideo = videoModal.querySelector('#modalVideo');
-                modalVideo.src = '';
-            });
-        }
-
-        // Set active tab on page load based on hash
-        window.addEventListener('DOMContentLoaded', function() {
-            const hash = window.location.hash;
-            if (hash) {
-                const tab = document.querySelector(`[href="${hash}"]`);
-                if (tab) {
-                    tab.click();
                 }
             }
+        });
+    });
+
+    // Dark Mode Toggle - Default to dark mode
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    if (darkModeToggle) {
+        // Set default to dark mode
+        document.body.dataset.bsTheme = 'dark';
+        darkModeToggle.checked = true;
+        
+        darkModeToggle.addEventListener('change', () => {
+            if (darkModeToggle.checked) {
+                document.body.dataset.bsTheme = 'dark';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.dataset.bsTheme = 'light';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    }
+
+    // Theme Color Change
+    const themeColors = document.querySelectorAll('.theme-color');
+    themeColors.forEach(color => {
+        color.addEventListener('click', function(e) {
+            e.preventDefault();
+            themeColors.forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
             
-            // Animate timeline items sequentially
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            timelineItems.forEach((item, index) => {
-                item.style.animationDelay = `${index * 100}ms`;
-            });
+            const colorName = this.getAttribute('data-color');
+            document.documentElement.style.setProperty('--neon-primary', `var(--bs-${colorName})`);
             
-            // Initialize music players
-            initializeMusicPlayers();
-        });
-
-        // Mobile bottom nav click handler
-        document.querySelectorAll('.bottom-nav .nav-link').forEach(link => {
-            link.addEventListener('click', function() {
-                document.querySelectorAll('.bottom-nav .nav-link').forEach(l => {
-                    l.classList.remove('active');
-                });
-                this.classList.add('active');
+            // Update profile image border
+            document.querySelectorAll('.profile-img').forEach(img => {
+                img.style.borderColor = `var(--bs-${colorName})`;
             });
         });
+    });
 
-        // See All buttons functionality
-        document.querySelectorAll('.see-all-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const target = this.getAttribute('data-target');
-                document.querySelectorAll('.expanded-favorites').forEach(section => {
-                    section.style.display = 'none';
-                });
-                document.getElementById(target).style.display = 'block';
-                
-                // Scroll to the expanded section
-                document.getElementById(target).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Music player functionality
-        document.querySelectorAll('.play-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const playerContainer = this.closest('.music-player');
-                const audioPlayer = playerContainer.querySelector('.audio-player');
-                const icon = this.querySelector('i');
-                
-                // Pause all other players
-                document.querySelectorAll('.audio-player').forEach(player => {
-                    if (player !== audioPlayer) {
-                        player.pause();
-                        const otherIcon = player.closest('.music-player').querySelector('.play-btn i');
-                        otherIcon.classList.remove('bi-pause-fill');
-                        otherIcon.classList.add('bi-play-fill');
-                    }
-                });
-                
-                if (audioPlayer.paused) {
-                    audioPlayer.play();
-                    icon.classList.remove('bi-play-fill');
-                    icon.classList.add('bi-pause-fill');
-                    
-                    // Update progress bar
-                    audioPlayer.addEventListener('timeupdate', function() {
-                        const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-                        playerContainer.querySelector('.music-progress-bar').style.width = `${progress}%`;
-                        
-                        // Update time display
-                        const currentTime = formatTime(audioPlayer.currentTime);
-                        const timeElements = playerContainer.querySelectorAll('.music-time span');
-                        timeElements[0].textContent = currentTime;
+    // Profile Image Upload
+    const profileUpload = document.getElementById('profileUpload');
+    if (profileUpload) {
+        profileUpload.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.querySelectorAll('.profile-img').forEach(img => {
+                        img.src = e.target.result;
                     });
-                } else {
-                    audioPlayer.pause();
-                    icon.classList.remove('bi-pause-fill');
-                    icon.classList.add('bi-play-fill');
-                }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // Image Modal
+    const imageModal = document.getElementById('imageModal');
+    if (imageModal) {
+        imageModal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            const imgSrc = button.getAttribute('data-img');
+            const modalImage = imageModal.querySelector('#modalImage');
+            modalImage.src = imgSrc;
+            modalImage.alt = button.getAttribute('alt');
+        });
+    }
+
+    // Video Modal
+    const videoModal = document.getElementById('videoModal');
+    if (videoModal) {
+        videoModal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            const videoSrc = button.getAttribute('data-video');
+            const modalVideo = videoModal.querySelector('#modalVideo');
+            modalVideo.src = videoSrc;
+        });
+        
+        videoModal.addEventListener('hidden.bs.modal', function() {
+            const modalVideo = videoModal.querySelector('#modalVideo');
+            modalVideo.src = '';
+        });
+    }
+
+    // Set active tab on page load based on hash
+    window.addEventListener('DOMContentLoaded', function() {
+        const hash = window.location.hash;
+        if (hash) {
+            const tab = document.querySelector(`[href="${hash}"]`);
+            if (tab) {
+                tab.click();
+            }
+        }
+        
+        // Animate timeline items sequentially
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach((item, index) => {
+            item.style.animationDelay = `${index * 100}ms`;
+        });
+    });
+
+    // Mobile bottom nav click handler
+    document.querySelectorAll('.bottom-nav .nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            document.querySelectorAll('.bottom-nav .nav-link').forEach(l => {
+                l.classList.remove('active');
+            });
+            this.classList.add('active');
+        });
+    });
+
+    // See All buttons functionality
+    document.querySelectorAll('.see-all-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const target = this.getAttribute('data-target');
+            document.querySelectorAll('.expanded-favorites').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(target).style.display = 'block';
+            
+            // Scroll to the expanded section
+            document.getElementById(target).scrollIntoView({
+                behavior: 'smooth'
             });
         });
+    });
 
-        // Show toast notification
-        function showToast(message, type) {
-            const toast = document.getElementById('toastNotification');
-            toast.textContent = message;
-            toast.className = 'toast-notification';
-            toast.classList.add(type);
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
+    // Show toast notification
+    function showToast(message, type) {
+        const toast = document.getElementById('toastNotification');
+        toast.textContent = message;
+        toast.className = 'toast-notification';
+        toast.classList.add(type);
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
 
-        // PIN Protection for Settings
-        const pinModal = document.getElementById('pinModal');
-        const pinContainer = document.getElementById('pinContainer');
-        const pinDigits = document.querySelectorAll('.pin-digit');
-        const pinSubmit = document.getElementById('pinSubmit');
-        const pinError = document.querySelector('.pin-error');
-        const pinSuccess = document.querySelector('.pin-success');
-        const settingsContent = document.getElementById('settingsContent');
-        const settingsLocked = document.getElementById('settingsLocked');
-        const unlockSettingsBtn = document.getElementById('unlockSettingsBtn');
-        const correctPIN = '123456';
-        let currentPin = '';
+    // PIN Protection for Settings
+    const pinModal = document.getElementById('pinModal');
+    const pinContainer = document.getElementById('pinContainer');
+    const pinDigits = document.querySelectorAll('.pin-digit');
+    const pinSubmit = document.getElementById('pinSubmit');
+    const pinError = document.querySelector('.pin-error');
+    const pinSuccess = document.querySelector('.pin-success');
+    const settingsContent = document.getElementById('settingsContent');
+    const settingsLocked = document.getElementById('settingsLocked');
+    const unlockSettingsBtn = document.getElementById('unlockSettingsBtn');
+    const correctPIN = '123456';
+    let currentPin = '';
 
-        // Settings link click handler
-        document.querySelectorAll('.settings-link').forEach(link => {
-            link.addEventListener('click', function(e) {
+    // Check if PIN was previously entered
+    if (localStorage.getItem('pinVerified') === 'true') {
+        settingsContent.style.display = 'block';
+        settingsLocked.style.display = 'none';
+    }
+
+    // Settings link click handler
+    document.querySelectorAll('.settings-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (localStorage.getItem('pinVerified') !== 'true') {
                 e.preventDefault();
                 showPinModal();
-            });
+            }
         });
+    });
 
-        // Unlock settings button
-        unlockSettingsBtn.addEventListener('click', function() {
-            showPinModal();
-        });
+    // Unlock settings button
+    unlockSettingsBtn.addEventListener('click', function() {
+        showPinModal();
+    });
 
-        function showPinModal() {
-            pinModal.style.display = 'flex';
-            setTimeout(() => {
-                pinContainer.classList.add('show');
-            }, 10);
-            currentPin = '';
-            pinDigits.forEach(digit => digit.value = '');
-            pinError.style.display = 'none';
-            pinSuccess.style.display = 'none';
-            pinDigits[0].focus();
-        }
-
-        function hidePinModal() {
-            pinContainer.classList.remove('show');
-            setTimeout(() => {
-                pinModal.style.display = 'none';
-            }, 300);
-        }
-
-        // PIN digit input handling
-        pinDigits.forEach((digit, index) => {
-            digit.addEventListener('input', function() {
-                if (this.value.length === 1) {
-                    currentPin += this.value;
-                    if (index < pinDigits.length - 1) {
-                        pinDigits[index + 1].focus();
-                    }
-                }
-            });
-            
-            digit.addEventListener('keydown', function(e) {
-                if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
-                    pinDigits[index - 1].focus();
-                    currentPin = currentPin.slice(0, -1);
-                }
-            });
-        });
-
-        // PIN submission
-        pinSubmit.addEventListener('click', function() {
-    if (currentPin.length === 6) {
-        if (currentPin === correctPIN) {
-            pinError.style.display = 'none';
-            pinSuccess.style.display = 'block';
-            
-            // Show success toast
-            showToast('PIN correct! Access granted.', 'success');
-            
-            // Hide PIN modal and show settings
-            setTimeout(() => {
-                hidePinModal();
-                
-                // Explicitly set display properties
-                settingsContent.style.display = 'block';
-                settingsContent.classList.add('show');
-                settingsLocked.style.display = 'none';
-                
-                // Scroll to settings
-                window.location.hash = '#settings';
-                document.querySelector('#settings').scrollIntoView({ behavior: 'smooth' });
-            }, 1000);
-        } else {
-            pinError.style.display = 'block';
-            pinSuccess.style.display = 'none';
-            currentPin = '';
-            pinDigits.forEach(digit => digit.value = '');
-            pinDigits[0].focus();
-            
-            // Show error toast
-            showToast('Incorrect PIN. Please try again.', 'error');
-        }
+    function showPinModal() {
+        pinModal.style.display = 'flex';
+        setTimeout(() => {
+            pinContainer.classList.add('show');
+        }, 10);
+        currentPin = '';
+        pinDigits.forEach(digit => digit.value = '');
+        pinError.style.display = 'none';
+        pinSuccess.style.display = 'none';
+        pinDigits[0].focus();
     }
-});
+
+    function hidePinModal() {
+        pinContainer.classList.remove('show');
+        setTimeout(() => {
+            pinModal.style.display = 'none';
+        }, 300);
+    }
+
+    // PIN digit input handling
+    pinDigits.forEach((digit, index) => {
+        digit.addEventListener('input', function() {
+            if (this.value.length === 1) {
+                currentPin += this.value;
+                if (index < pinDigits.length - 1) {
+                    pinDigits[index + 1].focus();
+                }
+            }
+        });
+        
+        digit.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
+                pinDigits[index - 1].focus();
+                currentPin = currentPin.slice(0, -1);
+            }
+        });
+    });
+
+    // PIN submission
+    pinSubmit.addEventListener('click', function() {
+        if (currentPin.length === 6) {
+            if (currentPin === correctPIN) {
+                pinError.style.display = 'none';
+                pinSuccess.style.display = 'block';
+                
+                // Show success toast
+                showToast('PIN correct! Access granted.', 'success');
+                
+                // Hide PIN modal and show settings
+                setTimeout(() => {
+                    hidePinModal();
+                    
+                    // Set PIN verification in localStorage
+                    localStorage.setItem('pinVerified', 'true');
+                    
+                    // Show settings content
+                    settingsContent.style.display = 'block';
+                    settingsLocked.style.display = 'none';
+                    
+                                            // Scroll to settings
+                                            window.location.hash = '#settings';
+                        document.querySelector('#settings').scrollIntoView({ behavior: 'smooth' });
+                    }, 1000);
+                } else {
+                    pinError.style.display = 'block';
+                    pinSuccess.style.display = 'none';
+                    currentPin = '';
+                    pinDigits.forEach(digit => digit.value = '');
+                    pinDigits[0].focus();
+                    
+                    // Show error toast
+                    showToast('Incorrect PIN. Please try again.', 'error');
+                }
+            }
+        });
 
         // Close PIN modal when clicking outside
         pinModal.addEventListener('click', function(e) {
@@ -2166,14 +2777,274 @@ body[data-bs-theme="light"] .music-artist {
             }
         });
 
-        // Initialize settings view
-        function initializeSettingsView() {
-            settingsContent.style.display = 'none';
-            settingsLocked.style.display = 'block';
+        // Mining functionality
+        const miningDisplay = document.getElementById('miningDisplay');
+        const startMiningBtn = document.getElementById('startMiningBtn');
+        const stopMiningBtn = document.getElementById('stopMiningBtn');
+        const hashCountDisplay = document.getElementById('hashCount');
+        const hashSpeedDisplay = document.getElementById('hashSpeed');
+        const miningStatusDisplay = document.getElementById('miningStatus');
+        const miningVideo = document.getElementById('miningVideo');
+        
+        let miningInterval;
+        let hashCount = 0;
+        let miningStartTime;
+        let isMining = false;
+        
+        startMiningBtn.addEventListener('click', function() {
+            if (!isMining) {
+                isMining = true;
+                startMiningBtn.disabled = true;
+                stopMiningBtn.disabled = false;
+                miningStatusDisplay.textContent = 'Mining...';
+                miningStartTime = Date.now();
+                
+                // Start mining animation
+                let counter = 0;
+                miningInterval = setInterval(() => {
+                    counter++;
+                    miningDisplay.textContent = counter;
+                    
+                    // Update hash count and speed
+                    hashCount += Math.floor(Math.random() * 100) + 50;
+                    hashCountDisplay.textContent = hashCount;
+                    
+                    const elapsedTime = (Date.now() - miningStartTime) / 1000; // in seconds
+                    const hashSpeed = Math.floor(hashCount / elapsedTime);
+                    hashSpeedDisplay.textContent = `${hashSpeed} H/s`;
+                    
+                }, 100);
+                
+                // Start background video
+                miningVideo.play();
+                miningVideo.classList.add('active');
+            }
+        });
+        
+        stopMiningBtn.addEventListener('click', function() {
+            if (isMining) {
+                isMining = false;
+                startMiningBtn.disabled = false;
+                stopMiningBtn.disabled = true;
+                miningStatusDisplay.textContent = 'Stopped';
+                
+                // Stop mining animation
+                clearInterval(miningInterval);
+                
+                // Stop background video
+                miningVideo.pause();
+                miningVideo.classList.remove('active');
+            }
+        });
+
+        // Firebase Authentication
+        const authButtons = document.getElementById('authButtons');
+        const userProfile = document.getElementById('userProfile');
+        const userPhoto = document.getElementById('userPhoto');
+        const userName = document.getElementById('userName');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const googleLoginBtn = document.getElementById('googleLoginBtn');
+        
+        // Listen for auth state changes
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                // User is signed in
+                authButtons.style.display = 'none';
+                userProfile.style.display = 'flex';
+                
+                // Set user info
+                userPhoto.src = user.photoURL || 'image/profil.png';
+                userName.textContent = user.displayName || user.email;
+                
+                // Close all auth modals
+                const loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+                const registerModal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
+                if (loginModal) loginModal.hide();
+                if (registerModal) registerModal.hide();
+                
+                showToast(`Welcome, ${user.displayName || user.email}!`, 'success');
+            } else {
+                // User is signed out
+                authButtons.style.display = 'block';
+                userProfile.style.display = 'none';
+            }
+        });
+        
+        // Logout button
+        logoutBtn.addEventListener('click', () => {
+            auth.signOut().then(() => {
+                showToast('Logged out successfully', 'success');
+            }).catch(error => {
+                showToast('Error signing out: ' + error.message, 'error');
+            });
+        });
+        
+        // Google login
+        googleLoginBtn.addEventListener('click', () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider).then(result => {
+                // Success - handled by auth state listener
+            }).catch(error => {
+                showToast('Google login failed: ' + error.message, 'error');
+            });
+        });
+        
+        // Email/password login
+        const loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                auth.signInWithEmailAndPassword(email, password)
+                    .then(() => {
+                        // Success - handled by auth state listener
+                    })
+                    .catch(error => {
+                        showToast('Login failed: ' + error.message, 'error');
+                    });
+            });
+        }
+        
+        // Email/password registration
+        const registerForm = document.getElementById('registerForm');
+        const registerForm2 = document.getElementById('registerForm2');
+        
+        function handleRegistration(email, password, name) {
+            auth.createUserWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    // Update user profile with display name
+                    return userCredential.user.updateProfile({
+                        displayName: name
+                    });
+                })
+                .then(() => {
+                    showToast('Registration successful!', 'success');
+                    const registerModal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
+                    if (registerModal) registerModal.hide();
+                })
+                .catch(error => {
+                    showToast('Registration failed: ' + error.message, 'error');
+                });
+        }
+        
+        if (registerForm) {
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const password = document.getElementById('registerPassword').value;
+                const confirmPassword = document.getElementById('registerConfirmPassword').value;
+                
+                if (password !== confirmPassword) {
+                    showToast('Passwords do not match', 'error');
+                    return;
+                }
+                
+                handleRegistration(email, password, name);
+            });
+        }
+        
+        if (registerForm2) {
+            registerForm2.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('registerName2').value;
+                const email = document.getElementById('registerEmail2').value;
+                const password = document.getElementById('registerPassword2').value;
+                const confirmPassword = document.getElementById('registerConfirmPassword2').value;
+                
+                if (password !== confirmPassword) {
+                    showToast('Passwords do not match', 'error');
+                    return;
+                }
+                
+                handleRegistration(email, password, name);
+            });
         }
 
-        // Initialize on page load
-        initializeSettingsView();
+        // Switch between login and register tabs
+        document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('href');
+                document.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('show', 'active');
+                });
+                document.querySelector(target).classList.add('show', 'active');
+                
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Email functionality
+        const emailLinks = document.querySelectorAll('.email-link');
+        const emailForm = document.getElementById('emailForm');
+        const emailModal = new bootstrap.Modal(document.getElementById('emailModal'));
+
+        // Inisialisasi EmailJS dengan Public Key yang benar
+        (function() {
+            emailjs.init('md-V_L099kjlxruK3'); // Pastikan Public Key ini valid dari dashboard EmailJS
+        })();
+
+        emailLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                emailModal.show();
+            });
+        });
+
+        emailForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('senderName').value.trim();
+            const email = document.getElementById('senderEmail').value.trim();
+            const message = document.getElementById('messageContent').value.trim();
+
+            // Validasi form
+            if (!name || !email || !message) {
+                showToast('Harap isi semua field!', 'error');
+                return;
+            }
+
+            // Loading state
+            const submitBtn = emailForm.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Mengirim...';
+
+            // 1. Email ke Admin
+            emailjs.send('service_zt2i51l', 'template_6rbzr79', {
+                to_email: 'admin@example.com', // Email admin
+                senderName: name,
+                senderEmail: email,
+                messageContent: message,
+                date: new Date().toLocaleString()
+            })
+            .then(() => {
+                // 2. Email balasan ke pengirim
+                return emailjs.send('service_zt2i51l', 'template_qgpuqzm', {
+                    to_email: email, // Kirim ke email pengirim
+                    senderName: name,
+                    messageContent: message
+                });
+            })
+            .then(() => {
+                showToast('Pesan Berhasil Terkirim! Silahkan Periksa Email Anda ' + email, 'success');
+                emailModal.hide();
+                emailForm.reset();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                showToast('Gagal mengirim: ' + (error.text || 'Coba lagi nanti'), 'error');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Kirim Pesan';
+            });
+        });
     </script>
 </body>
 </html>
